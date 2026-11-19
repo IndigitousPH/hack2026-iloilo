@@ -1,0 +1,366 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Meet Nonoy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="The #HACK Christmas Iloilo challenge persona, with a template teams fill in to build their own version.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;600;800&family=Noto+Sans:wght@400;500;700&family=Allison&display=swap">
+<style>
+/* Layout: a persona profile card up top, then a numbered fill-in worksheet (the sections are a real sequence), ending in a generated "How might we" statement. Same dark #HACK Christmas look. */
+:root{
+  --ink:#0b0b0b; --panel:#161616; --line:#2a2826; --paper:#f4f2ec; --muted:#a9a59c;
+  --yellow:#EFE974; --orange:#EF4E25; --red:#F43F5E;
+  --mono:"Noto Sans Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:"Noto Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --script:"Allison","Brush Script MT",cursive;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:1rem;line-height:1.6}
+a{color:var(--yellow);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;border-radius:2px}
+.wrap{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+p{margin:0;max-width:62ch}
+h2{font-family:var(--mono);font-weight:800;font-size:clamp(1.4rem,1.2rem + 1vw,2rem);line-height:1.15;margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin:0 0 10px}
+.eyebrow::before{content:"> ";color:var(--orange)}
+.muted{color:var(--muted)}
+
+.top{padding-block:24px;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.brandline{font-family:var(--mono);font-size:.8rem;letter-spacing:.2em;color:var(--orange)}
+.brandline span{color:var(--paper)}
+.back{font-family:var(--mono);font-size:.85rem;text-decoration:none;border:1px solid var(--line);padding:7px 12px;border-radius:999px;color:var(--paper)}
+.back:hover{border-color:var(--orange);color:var(--orange)}
+
+/* profile */
+.profile{padding-block:36px 40px}
+.card{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
+.avatar{width:100%;max-width:200px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff8f78,var(--orange) 60%,#b9341d);display:grid;place-items:center;font-family:var(--script);font-size:7rem;line-height:1;color:var(--paper);padding-top:.15em}
+.name{font-family:var(--mono);font-weight:800;font-size:clamp(2.6rem,2rem + 3vw,4rem);line-height:1;color:var(--orange);margin:0;letter-spacing:-.03em}
+.name small{font-size:.5em;color:var(--paper);letter-spacing:0;margin-left:.2em}
+.tagline{font-family:var(--script);font-size:2.2rem;line-height:1.1;margin:6px 0 18px;color:var(--paper)}
+.facts{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--line)}
+.facts li{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.facts span{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);padding-top:3px}
+.why{margin-top:22px;padding:18px 20px;border-left:3px solid var(--yellow);background:rgba(239,233,116,.06)}
+.why p{max-width:none}
+
+/* worksheet */
+.intro{padding-block:8px 8px}
+.howto{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+.howto div{border-top:2px solid var(--line);padding-top:10px;font-size:.93rem;color:var(--muted)}
+.howto b{display:block;font-family:var(--mono);color:var(--paper);font-weight:600}
+.section{padding-block:36px;border-top:1px solid var(--line)}
+.section:first-of-type{border-top:0}
+.shead{display:flex;gap:14px;align-items:baseline;margin-bottom:6px}
+.num{font-family:var(--mono);font-weight:800;color:var(--orange);font-size:1rem}
+.sdesc{color:var(--muted);margin-bottom:20px}
+.field{display:flex;flex-direction:column;gap:8px;margin-top:22px}
+.field > label,.field > .lab{font-family:var(--mono);font-weight:600;font-size:.98rem}
+.hint{font-size:.88rem;color:var(--muted)}
+textarea,input[type=text]{width:100%;font:inherit;color:var(--paper);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px;resize:vertical;min-height:48px}
+textarea{min-height:84px}
+textarea::placeholder,input::placeholder{color:#77736b}
+textarea:focus,input:focus{border-color:var(--orange);outline:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--mono);font-size:.84rem;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;min-height:36px}
+.chips button:hover{border-color:var(--muted);color:var(--paper)}
+.chips button[aria-pressed="true"]{background:var(--paper);color:#0b0b0b;border-color:var(--paper)}
+
+/* output */
+.output{padding-block:40px 64px;border-top:1px solid var(--line)}
+.hmw{background:var(--orange);color:#120806;border-radius:14px;padding:26px}
+.hmw .eyebrow{color:#120806}
+.hmw .eyebrow::before{color:#120806}
+.hmw p.statement{font-family:var(--mono);font-weight:800;font-size:clamp(1.2rem,1rem + 1vw,1.7rem);line-height:1.35;max-width:none}
+.hmw p.statement em{font-style:normal;background:rgba(18,8,6,.12);padding:0 4px;border-radius:3px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}
+.btn{font-family:var(--mono);font-weight:600;font-size:.92rem;border:0;border-radius:8px;padding:12px 18px;cursor:pointer;min-height:44px}
+.btn-dark{background:#0b0b0b;color:var(--yellow)}
+.btn-ghost{background:transparent;color:#120806;border:1px solid rgba(18,8,6,.45)}
+.msg{font-family:var(--mono);font-size:.85rem;min-height:1.3em}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:var(--mono);font-size:.85rem}
+#summary{position:absolute;left:-9999px;width:1px;height:1px}
+
+footer{padding-block:28px;border-top:1px solid var(--line)}
+footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+
+@media (max-width:640px){
+  .card{grid-template-columns:1fr;padding:22px}
+  .avatar{max-width:120px;font-size:4.5rem}
+  .howto{grid-template-columns:1fr}
+  .facts li{grid-template-columns:1fr;gap:0}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brandline">#HACK CHRISTMAS · <span>ILOILO</span></div>
+    <a class="back" href="participants.html">← Participant hub</a>
+  </div>
+</header>
+
+<main>
+  <section class="profile" aria-labelledby="who">
+    <div class="wrap">
+      <p class="eyebrow">The challenge persona</p>
+      <article class="card">
+        <div class="avatar" aria-hidden="true">N</div>
+        <div>
+          <h1 class="name" id="who">Nonoy<small>, 19</small></h1>
+          <p class="tagline">curious about Jesus</p>
+          <ul class="facts">
+            <li><span>Studies</span><div>College freshman in Iloilo. His main goal this year is not to fail his classes.</div></li>
+            <li><span>Home</span><div>Grew up in the city and lives with his family in Jaro.</div></li>
+            <li><span>Free time</span><div>Hangs out with friends, and has time to browse social media.</div></li>
+            <li><span>Faith</span><div>Grew up in a traditional Filipino family. He's curious about God and about Jesus, and willing to talk about what he believes.</div></li>
+          </ul>
+          <div class="why"><p><b>Everyone is making for Nonoy.</b> Every team starts from this same person. The rest of his story is yours to imagine, so each team's Nonoy will be a little different, and so will what you make for him.</p></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="intro" aria-labelledby="ws">
+    <div class="wrap">
+      <p class="eyebrow">Your team's version</p>
+      <h2 id="ws">Fill in the rest of Nonoy's story</h2>
+      <p class="muted">Talk it through as a team, then write it down. Your answers stay on this phone only, so choose one teammate to fill it in.</p>
+      <div class="howto">
+        <div><b>Pick real details</b>Think of someone you actually know who's like Nonoy.</div>
+        <div><b>Be specific</b>"Lonely after his barkada moved away" beats "sad sometimes."</div>
+        <div><b>Stay curious</b>Ask why at least twice before you settle on an answer.</div>
+      </div>
+    </div>
+  </section>
+
+  <form id="persona-form" autocomplete="off">
+    <section class="section" aria-labelledby="s1">
+      <div class="wrap">
+        <div class="shead"><span class="num">01</span><h2 id="s1">His world online</h2></div>
+        <p class="sdesc">Where Nonoy spends his scrolling time, and what catches his eye.</p>
+
+        <div class="field">
+          <span class="lab" id="apps-l">Which apps does he use most?</span>
+          <div class="chips" role="group" aria-labelledby="apps-l" data-chips="apps">
+            <button type="button">TikTok</button><button type="button">Facebook</button><button type="button">Instagram</button><button type="button">YouTube</button><button type="button">Messenger</button><button type="button">Discord</button><button type="button">Mobile games</button><button type="button">Spotify</button><button type="button">X</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-content">What makes him stop scrolling?</label>
+          <textarea id="f-content" name="content" placeholder="e.g. funny memes about college life, basketball highlights, hugot posts, music covers"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-trust">Who does he follow and trust online?</label>
+          <textarea id="f-trust" name="trust" placeholder="e.g. local Ilonggo creators, a gaming streamer, his older cousin, his blockmates"></textarea>
+        </div>
+        <div class="field">
+          <span class="lab" id="when-l">When is he online?</span>
+          <div class="chips" role="group" aria-labelledby="when-l" data-chips="when">
+            <button type="button">Morning commute</button><button type="button">Between classes</button><button type="button">Lunch break</button><button type="button">After dinner</button><button type="button">Late at night</button><button type="button">Weekends</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s2">
+      <div class="wrap">
+        <div class="shead"><span class="num">02</span><h2 id="s2">His heart this Christmas</h2></div>
+        <p class="sdesc">What the season looks like and feels like for him.</p>
+
+        <div class="field">
+          <label for="f-christmas">What does Christmas look like for Nonoy?</label>
+          <textarea id="f-christmas" name="christmas" placeholder="e.g. a big family reunion in Jaro, Simbang Gabi with his lola, a parent who can't come home from abroad this year"></textarea>
+        </div>
+        <div class="field">
+          <span class="lab" id="feel-l">What is he feeling or struggling with?</span>
+          <div class="chips" role="group" aria-labelledby="feel-l" data-chips="feelings">
+            <button type="button">Pressure to pass</button><button type="button">Loneliness</button><button type="button">Family expectations</button><button type="button">Worry about the future</button><button type="button">Comparing himself online</button><button type="button">Money is tight</button><button type="button">A breakup</button><button type="button">Grief</button>
+          </div>
+          <input type="text" id="f-feel-other" name="feelOther" aria-label="Other feelings or struggles" placeholder="Something else? Write it here">
+        </div>
+        <div class="field">
+          <label for="f-hope">What does he hope for, or quietly long for?</label>
+          <textarea id="f-hope" name="hope" placeholder="e.g. to make his parents proud, to belong, to know his life has a purpose"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-view">What does he think about Jesus, church and Christians, and why?</label>
+          <textarea id="f-view" name="view" placeholder="e.g. Jesus is part of family tradition but feels distant; he has questions but has never asked anyone"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s3">
+      <div class="wrap">
+        <div class="shead"><span class="num">03</span><h2 id="s3">The gap</h2></div>
+        <p class="sdesc">Nonoy is curious. What stands between his curiosity and the good news?</p>
+
+        <div class="field">
+          <label for="f-barrier">What keeps him from hearing or understanding the gospel?</label>
+          <textarea id="f-barrier" name="barrier" placeholder="e.g. no one has explained it simply, he thinks faith is only rituals, he doesn't know a Christian his age he can ask"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-listen">What would make him actually listen, or share it with a friend?</label>
+          <textarea id="f-listen" name="listen" placeholder="e.g. something funny and honest, a story from someone his age, content he can relate to in Hiligaynon"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s4">
+      <div class="wrap">
+        <div class="shead"><span class="num">04</span><h2 id="s4">In his own words</h2></div>
+        <p class="sdesc">Write something Nonoy might actually say or post. English, Hiligaynon or Taglish all work.</p>
+        <div class="field">
+          <label for="f-quote">Nonoy says…</label>
+          <textarea id="f-quote" name="quote" placeholder="e.g. &quot;Gusto ko man mahibaluan, pero indi ko kabalo sa diin magsugod.&quot;"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s5">
+      <div class="wrap">
+        <div class="shead"><span class="num">05</span><h2 id="s5">Your idea for him</h2></div>
+        <p class="sdesc">Turn what you learned into a challenge statement your team can build on.</p>
+        <div class="field">
+          <label for="f-need">Nonoy needs…</label>
+          <input type="text" id="f-need" name="need" placeholder="e.g. a simple, honest answer to who Jesus is">
+        </div>
+        <div class="field">
+          <label for="f-format">…through…</label>
+          <input type="text" id="f-format" name="format" placeholder="e.g. a 30-second reel series on TikTok">
+        </div>
+      </div>
+    </section>
+  </form>
+
+  <section class="output" aria-labelledby="hmw-h">
+    <div class="wrap">
+      <div class="hmw">
+        <p class="eyebrow" id="hmw-h">How might we</p>
+        <p class="statement" id="statement" aria-live="polite">How might we help Nonoy, a curious 19-year-old in Jaro, find <em>[what he needs]</em> through <em>[your format]</em> this Christmas?</p>
+        <div class="actions">
+          <button type="button" class="btn btn-dark" id="copy-btn">Copy our persona</button>
+          <button type="button" class="btn btn-ghost" id="reset-btn">Start over</button>
+          <span class="msg" id="msg" aria-live="polite"></span>
+        </div>
+        <div class="confirm" id="confirm" hidden>
+          <span>Clear every answer on this phone?</span>
+          <button type="button" class="btn btn-dark" id="confirm-yes">Yes, clear</button>
+          <button type="button" class="btn btn-ghost" id="confirm-no">Keep them</button>
+        </div>
+        <textarea id="summary" aria-hidden="true" tabindex="-1"></textarea>
+      </div>
+      <p class="muted" style="margin-top:16px">Paste your persona into your team's notes or your pitch slides so everyone builds for the same Nonoy.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><p>#HACK Christmas Iloilo · Questions? Jonah · 0916 245 1641</p></div>
+</footer>
+
+<script>
+/* A tappable group of options, many can be picked */
+class ChipGroup {
+  constructor(el) { this.el = el; this.key = el.dataset.chips; this.buttons = [...el.querySelectorAll("button")]; }
+  values() { return this.buttons.filter(b => b.getAttribute("aria-pressed") === "true").map(b => b.textContent); }
+  set(values) { this.buttons.forEach(b => b.setAttribute("aria-pressed", String(values.includes(b.textContent)))); }
+  onChange(fn) { this.buttons.forEach(b => b.addEventListener("click", () => { b.setAttribute("aria-pressed", String(b.getAttribute("aria-pressed") !== "true")); fn(); })); }
+}
+
+/* The team's persona: reads, saves and summarizes the worksheet */
+class PersonaWorksheet {
+  constructor(form, chipEls) {
+    this.form = form;
+    this.chips = chipEls.map(el => new ChipGroup(el));
+    this.fields = [...form.querySelectorAll("textarea[name], input[name]")];
+    this.storeKey = "hackxmas-persona";
+  }
+  data() {
+    const d = {};
+    this.fields.forEach(f => { d[f.name] = f.value.trim(); });
+    this.chips.forEach(c => { d[c.key] = c.values(); });
+    return d;
+  }
+  load() {
+    try {
+      const d = JSON.parse(localStorage.getItem(this.storeKey) || "{}");
+      this.fields.forEach(f => { if (d[f.name]) f.value = d[f.name]; });
+      this.chips.forEach(c => c.set(d[c.key] || []));
+    } catch (e) {}
+  }
+  save() { try { localStorage.setItem(this.storeKey, JSON.stringify(this.data())); } catch (e) {} }
+  clear() {
+    this.fields.forEach(f => { f.value = ""; });
+    this.chips.forEach(c => c.set([]));
+    try { localStorage.removeItem(this.storeKey); } catch (e) {}
+  }
+  statementParts() {
+    const d = this.data();
+    return { need: d.need || "[what he needs]", format: d.format || "[your format]" };
+  }
+  summary() {
+    const d = this.data(), p = this.statementParts();
+    const feelings = [...d.feelings, d.feelOther].filter(Boolean).join(", ");
+    const line = (label, v) => v && v.length ? `${label}: ${Array.isArray(v) ? v.join(", ") : v}` : null;
+    return [
+      "OUR PERSONA: NONOY, 19",
+      "College freshman in Iloilo, lives with his family in Jaro. Grew up in a traditional Filipino family; curious about God and Jesus.",
+      "",
+      line("Apps", d.apps), line("Stops scrolling for", d.content), line("Trusts online", d.trust), line("Online", d.when),
+      line("Christmas looks like", d.christmas), line("Feeling", feelings), line("Hopes for", d.hope), line("Thinks about Jesus/church", d.view),
+      line("What keeps him from the gospel", d.barrier), line("What would make him listen", d.listen),
+      d.quote ? `Nonoy says: "${d.quote.replace(/^"|"$/g, "")}"` : null,
+      "",
+      `How might we help Nonoy find ${p.need} through ${p.format} this Christmas?`
+    ].filter(l => l !== null).join("\n");
+  }
+}
+
+/* The live "How might we" line and its buttons */
+class StatementPanel {
+  constructor(sheet) {
+    this.sheet = sheet;
+    this.out = document.getElementById("statement");
+    this.msg = document.getElementById("msg");
+    this.summaryBox = document.getElementById("summary");
+    this.confirmBox = document.getElementById("confirm");
+  }
+  escape(s) { return s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+  render() {
+    const p = this.sheet.statementParts();
+    this.out.innerHTML = `How might we help Nonoy, a curious 19-year-old in Jaro, find <em>${this.escape(p.need)}</em> through <em>${this.escape(p.format)}</em> this Christmas?`;
+  }
+  async copy() {
+    const text = this.sheet.summary();
+    try { await navigator.clipboard.writeText(text); this.msg.textContent = "Copied. Paste it into your team notes."; }
+    catch (e) {
+      this.summaryBox.value = text; this.summaryBox.style.cssText = "position:static;width:100%;height:160px;margin-top:12px;color:#0b0b0b;background:#f4f2ec";
+      this.summaryBox.removeAttribute("aria-hidden"); this.summaryBox.select();
+      this.msg.textContent = "Select all the text below and copy it.";
+    }
+  }
+  wire() {
+    document.getElementById("copy-btn").addEventListener("click", () => this.copy());
+    document.getElementById("reset-btn").addEventListener("click", () => { this.confirmBox.hidden = false; });
+    document.getElementById("confirm-no").addEventListener("click", () => { this.confirmBox.hidden = true; });
+    document.getElementById("confirm-yes").addEventListener("click", () => {
+      this.sheet.clear(); this.render(); this.confirmBox.hidden = true; this.msg.textContent = "Cleared. Start fresh.";
+    });
+    this.render();
+  }
+}
+
+const form = document.getElementById("persona-form");
+const sheet = new PersonaWorksheet(form, [...document.querySelectorAll("[data-chips]")]);
+const panel = new StatementPanel(sheet);
+sheet.load();
+const update = () => { sheet.save(); panel.render(); };
+form.addEventListener("input", update);
+form.addEventListener("submit", e => e.preventDefault());
+sheet.chips.forEach(c => c.onChange(update));
+panel.wire();
+</script>
+
+</body></html>

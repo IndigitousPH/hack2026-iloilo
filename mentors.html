@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>#HACK Christmas Mentor Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Mentor guide for #HACK Christmas Iloilo: your role, Nonoy, the schedule, coaching questions, care and judging.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;600;800&family=Noto+Sans:wght@400;500;700&family=Allison&display=swap">
+<style>
+/* Layout: a phone-first mentor guide. Same header, sticky tab bar and one-panel-at-a-time pattern as the participant hub. */
+:root{
+  --ink:#0b0b0b; --panel:#161616; --line:#2a2826; --paper:#f4f2ec; --muted:#a9a59c;
+  --yellow:#EFE974; --orange:#EF4E25; --red:#F43F5E; --discord:#8f9cff;
+  --mono:"Noto Sans Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:"Noto Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --script:"Allison","Brush Script MT",cursive;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:1rem;line-height:1.6}
+a{color:var(--yellow);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;border-radius:2px}
+.wrap{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h2{font-family:var(--mono);font-weight:800;font-size:clamp(1.6rem,1.3rem + 1.4vw,2.4rem);line-height:1.1;letter-spacing:-.02em;margin:0 0 10px;text-wrap:balance}
+h3{font-family:var(--mono);font-weight:600;font-size:1.1rem;margin:0 0 6px;line-height:1.25}
+p{margin:0;max-width:62ch}
+.muted{color:var(--muted)}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin:0 0 10px}
+.eyebrow::before{content:"> ";color:var(--orange)}
+.tba{display:inline-block;font-family:var(--mono);font-size:.78em;padding:1px 8px;border:1px dashed var(--yellow);color:var(--yellow);border-radius:4px;white-space:nowrap}
+
+/* header */
+.top{padding-block:28px 22px;border-bottom:1px solid var(--line)}
+.brandline{font-family:var(--mono);font-size:.8rem;letter-spacing:.2em;color:var(--orange);margin-bottom:14px}
+.brandline span{color:var(--paper)}
+.mark{margin:0;line-height:.9}
+.mark .hack{font-family:var(--mono);font-weight:800;font-size:clamp(2.6rem,2rem + 4vw,4.6rem);color:var(--orange);letter-spacing:-.04em}
+.mark .cursor{display:inline-block;width:.09em;height:.8em;background:var(--paper);margin-left:.04em;vertical-align:-.04em;animation:blink 1.05s steps(1) infinite}
+.mark .xmas{display:block;font-family:var(--script);font-weight:400;font-size:clamp(2.4rem,1.8rem + 4vw,4.2rem);margin:-.35em 0 0 .6em;transform:rotate(-4deg);line-height:1}
+.mark .hub{display:block;font-family:var(--mono);font-size:.85rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-top:8px}
+@keyframes blink{50%{opacity:0}}
+.status{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.status .pill{font-family:var(--mono);font-size:.82rem;border:1px solid var(--line);background:var(--panel);padding:7px 12px;border-radius:6px}
+.status .pill b{color:var(--yellow);font-weight:600}
+.discord{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-weight:600;text-decoration:none;color:#0b0b0b;background:var(--discord);padding:10px 16px;border-radius:8px}
+.discord:hover{filter:brightness(1.08)}
+.discord svg{width:20px;height:20px}
+.persona-link{display:inline-flex;align-items:center;font-family:var(--mono);font-weight:600;font-size:.9rem;text-decoration:none;color:var(--paper);border:1px solid var(--orange);padding:9px 14px;border-radius:8px;min-height:44px}
+.persona-link:hover{background:var(--orange);color:#120806}
+
+/* tabs */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ink);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--ink)}
+.tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.tabs .wrap::-webkit-scrollbar{display:none}
+.tabs a{flex:0 0 auto;font-family:var(--mono);font-size:.85rem;font-weight:600;text-decoration:none;color:var(--muted);padding:14px 12px 12px;border-bottom:2px solid transparent;white-space:nowrap}
+.tabs a:hover{color:var(--paper)}
+.tabs a[aria-current="page"]{color:var(--paper);border-bottom-color:var(--orange)}
+
+.panel{padding-block:32px 64px}
+.panel + .panel{border-top:1px solid var(--line)}
+.lead{color:var(--muted);margin-bottom:22px}
+
+/* program */
+.days{display:grid;gap:18px}
+.day{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+.dayhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;padding:16px 18px;border-bottom:1px solid var(--line);background:var(--ink)}
+.dow{font-family:var(--mono);font-weight:800;font-size:1.2rem;color:var(--orange)}
+.date{font-family:var(--mono)}
+.place{margin-left:auto;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow)}
+.sched{list-style:none;margin:0;padding:4px 0}
+.row{display:grid;grid-template-columns:8.6em minmax(0,1fr);gap:12px;padding:10px 18px;border-left:3px solid transparent}
+.row + .row{border-top:1px solid var(--line)}
+.row time{font-family:var(--mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px;white-space:nowrap}
+.row strong{font-weight:600}
+.row.sub div{padding-left:18px;position:relative}
+.row.sub div::before{content:"└";position:absolute;left:0;color:var(--muted);font-family:var(--mono)}
+.row.key{border-left-color:var(--orange)}
+.row.meal{border-left-color:var(--yellow)}
+.row.worship{border-left-color:var(--red)}
+.row.done{opacity:.45}
+.row.now{background:rgba(239,78,37,.12)}
+.now-tag{display:none;margin-left:8px;font-family:var(--mono);font-size:.7rem;padding:1px 8px;border-radius:999px;background:var(--yellow);color:#0b0b0b;vertical-align:1px}
+.row.now .now-tag{display:inline-block}
+.steps{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.steps li{font-family:var(--mono);font-size:.74rem;padding:2px 8px;border:1px solid var(--line);border-radius:4px;color:var(--muted)}
+.chip{display:inline-block;margin-left:4px;font-family:var(--mono);font-size:.7rem;padding:1px 8px;border-radius:999px;background:var(--orange);color:#120806;vertical-align:1px}
+.chip.ghost{background:transparent;border:1px solid var(--yellow);color:var(--yellow)}
+.legend{margin-top:16px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 10px}
+
+/* submit */
+.bigcta{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;background:var(--orange);color:#120806;border-radius:10px;padding:22px}
+.bigcta h3{font-size:1.3rem}
+.bigcta p{color:#2a0f07}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:600;text-decoration:none;padding:13px 20px;border-radius:8px;background:#0b0b0b;color:var(--yellow)}
+.btn:hover{transform:translateY(-1px)}
+.photocta{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;margin-top:14px}
+.photocta h3{font-size:1.15rem}
+.photocta p{color:var(--muted)}
+.btn-yellow{background:var(--yellow);color:#0b0b0b}
+.checklist{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.checklist li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding:14px 0;border-bottom:1px solid var(--line)}
+.checklist input{width:18px;height:18px;margin-top:3px;accent-color:var(--orange)}
+.checklist label{cursor:pointer}
+.checklist label b{font-family:var(--mono);font-weight:600}
+.checklist label span{display:block;color:var(--muted);font-size:.93rem}
+.progress{margin-top:12px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+
+/* reminders */
+.framework{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:28px}
+.fw{background:var(--panel);padding:16px;min-width:0}
+.fw b{display:block;font-family:var(--mono);color:var(--orange);font-size:.95rem;margin-bottom:4px}
+.fw p{color:var(--muted);font-size:.9rem}
+.rem{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.rem li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:start}
+.rem .ic{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);font-family:var(--mono);font-weight:800;color:var(--yellow);font-size:.9rem}
+.rem b{font-family:var(--mono);font-weight:600}
+.rem p{color:var(--muted);font-size:.95rem}
+.subhead{font-family:var(--mono);font-weight:800;font-size:1.25rem;margin:36px 0 14px}
+.verses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.verse{border-top:2px solid var(--yellow);padding-top:12px;min-width:0}
+.verse q{font-family:var(--script);font-size:2rem;line-height:1.05;display:block;quotes:none}
+.verse cite{display:block;margin-top:8px;font-family:var(--mono);font-style:normal;font-size:.78rem;letter-spacing:.1em;color:var(--orange)}
+.ideas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.idea{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
+.idea .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;color:var(--orange);text-transform:uppercase}
+.idea p{font-size:.95rem;margin-top:4px}
+
+/* global */
+.glist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.gev{display:grid;grid-template-columns:6.4em minmax(0,1fr) auto;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);align-items:start}
+.gev time{font-family:var(--mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px}
+.gev strong{font-weight:600}
+.gev p{color:var(--muted);font-size:.9rem}
+.gev p a{margin-left:6px;font-family:var(--mono);font-size:.82rem}
+.gev .kind{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:4px;border:1px solid var(--line);color:var(--muted)}
+.gev .kind.global{border-color:var(--discord);color:var(--discord)}
+.gev.here{background:rgba(239,78,37,.12);border-left:3px solid var(--orange);padding-left:10px}
+.gev.done{opacity:.4}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.filters button{font-family:var(--mono);font-size:.8rem;background:var(--panel);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--paper);color:#0b0b0b;border-color:var(--paper)}
+
+/* next */
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.card .when{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow)}
+.card p{color:var(--muted);font-size:.93rem;flex:1}
+.card a{font-family:var(--mono);font-weight:600;font-size:.88rem;margin-top:6px}
+.card.wide{grid-column:1/-1;border-color:var(--orange)}
+
+footer{padding-block:30px;border-top:1px solid var(--line)}
+footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+
+@media (max-width:640px){
+  .framework{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .verses,.ideas,.cards{grid-template-columns:1fr}
+  .gev{grid-template-columns:5.6em minmax(0,1fr)}
+  .gev .kind{grid-column:2;justify-self:start}
+}
+@media (max-width:400px){.row{grid-template-columns:1fr;gap:2px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* mentor guide */
+.intro{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:10px;padding:18px 20px;margin-bottom:28px}
+.intro p{max-width:none}
+.dl{display:grid;grid-template-columns:8em minmax(0,1fr);border-top:1px solid var(--line);margin:0}
+.dl dt,.dl dd{margin:0;padding:12px 0;border-bottom:1px solid var(--line)}
+.dl dt{font-family:var(--mono);font-size:.82rem;color:var(--yellow);padding-top:14px}
+.dl dd{color:var(--paper)}
+.dodont{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.dd{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
+.dd h3{display:flex;align-items:center;gap:8px}
+.dd.do h3{color:var(--yellow)}
+.dd.dont h3{color:var(--red)}
+.dd ul{margin:8px 0 0;padding-left:1.1em;display:grid;gap:6px;color:var(--muted);font-size:.95rem}
+.qtable{width:100%;border-collapse:collapse;border-top:1px solid var(--line)}
+.qtable th,.qtable td{text-align:left;vertical-align:top;padding:13px 12px 13px 0;border-bottom:1px solid var(--line)}
+.qtable thead th{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.qtable tbody th{font-family:var(--mono);font-weight:600;font-size:.9rem;width:34%;color:var(--paper)}
+.qtable td{color:var(--muted)}
+.qtable td ul{margin:0;padding-left:1.1em}
+.persona{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:22px}
+.avatar{width:64px;height:64px;border-radius:50%;background:var(--orange);color:#120806;display:grid;place-items:center;font-family:var(--mono);font-weight:800;font-size:1.8rem}
+.persona h3{font-size:1.4rem;margin:0}
+.persona .sub{font-family:var(--script);font-size:1.9rem;color:var(--yellow);line-height:1;display:block;margin:2px 0 8px}
+.persona .dl{grid-template-columns:6.5em minmax(0,1fr)}
+.bullets{margin:0;padding-left:1.1em;display:grid;gap:8px;color:var(--muted)}
+.bullets b{color:var(--paper);font-weight:600}
+.callout{border:1px dashed var(--yellow);border-radius:10px;padding:14px 16px;margin:18px 0;color:var(--paper)}
+.callout p{max-width:none}
+.helps{font-size:.9rem;color:var(--yellow);display:block;margin-top:2px}
+.rubric{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.rubric li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.rubric b{font-family:var(--mono);font-weight:600}
+.rubric p{color:var(--muted);font-size:.93rem;grid-column:1}
+.rubric .pts{grid-row:1/span 2;grid-column:2;font-family:var(--mono);font-weight:800;font-size:1.4rem;color:var(--orange);text-align:right;line-height:1}
+.rubric .pts small{display:block;font-size:.65rem;font-weight:600;color:var(--muted);letter-spacing:.1em}
+.rubric .bands{grid-column:1;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.rubric li.total b,.rubric li.total .pts{color:var(--yellow)}
+.thanks{margin-top:28px;font-family:var(--script);font-size:2.1rem;line-height:1.1;color:var(--paper);max-width:28ch}
+@media (max-width:640px){
+  .dodont{grid-template-columns:1fr}
+  .dl{grid-template-columns:1fr}
+  .dl dt{padding-bottom:0;border-bottom:0}
+  .persona{grid-template-columns:1fr}
+  .qtable tbody th{width:40%}
+}
+
+.mlist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mlist li{display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;min-width:0}
+.mlist b{font-family:var(--mono);font-weight:600;display:block}
+.mlist p{color:var(--muted);font-size:.88rem;line-height:1.45}
+.avatar.sm{width:40px;height:40px;font-size:1.1rem;flex:none}
+@media (max-width:640px){.mlist{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brandline">INDIGITOUS <span>ILOILO</span></div>
+    <h1 class="mark"><span class="hack">#HACK<span class="cursor" aria-hidden="true"></span></span><span class="xmas">Christmas</span><span class="hub">Mentor guide</span></h1>
+    <div class="status">
+      <span class="pill" id="status-pill"><b>Mentors &amp; judges meet Sat, 9:00 AM</b> · ICMAC, Smallville</span>
+      <a class="discord" href="http://ndgt.us/discord" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.3 5.3A16.6 16.6 0 0 0 15.2 4l-.5 1a15.4 15.4 0 0 0-5.4 0l-.5-1a16.6 16.6 0 0 0-4.1 1.3C2.1 9.2 1.4 13 1.7 16.7a16.8 16.8 0 0 0 5 2.5l1.1-1.7a10.8 10.8 0 0 1-1.7-.8l.4-.3a11.9 11.9 0 0 0 11 0l.4.3c-.5.3-1.1.6-1.7.8l1.1 1.7a16.8 16.8 0 0 0 5-2.5c.4-4.3-.7-8-3-11.4ZM8.7 14.5c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"/></svg>
+        Join our Discord
+      </a>
+      <a class="persona-link" href="participants.html">Participant hub →</a>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Guide sections">
+  <div class="wrap">
+    <a href="#role" data-tab="role">Your role</a>
+    <a href="#nonoy" data-tab="nonoy">Nonoy</a>
+    <a href="#schedule" data-tab="schedule">Schedule</a>
+    <a href="#questions" data-tab="questions">Questions</a>
+    <a href="#care" data-tab="care">Care</a>
+    <a href="#judging" data-tab="judging">Judging</a>
+    <a href="#checklist-panel" data-tab="checklist-panel">Checklist</a>
+  </div>
+</nav>
+
+<main>
+  <section class="panel" id="role" aria-labelledby="rl-h">
+    <div class="wrap">
+      <p class="eyebrow">Your role</p>
+      <h2 id="rl-h">Walk beside them</h2>
+      <div class="intro"><p>Thank you for serving. Over 24 hours, young creatives will dream, build, and offer what they make back to God. Your job is not to build their project for them. It is to walk beside them, ask good questions, and help them see what God is doing in them and through them.</p></div>
+
+      <h3 class="subhead" style="margin-top:0">Event snapshot</h3>
+      <dl class="dl">
+        <dt>What</dt><dd>A 24-hour creatives sprint, part of Indigitous #HACK (missions in a digital age).</dd>
+        <dt>When</dt><dd>Friday, Nov 20 at 5:00 PM to Saturday, Nov 21 at 5:00 PM.</dd>
+        <dt>Where</dt><dd>Friday evening at ICMAC, overnight on Discord, then back at ICMAC on Saturday. Mentors meet at ICMAC at 9:00 AM Saturday. You're welcome on Friday too.</dd>
+        <dt>Outcome</dt><dd>Each team chooses what to make: a content strategy, a film or reel, or a game.</dd>
+        <dt>Who</dt><dd>Youth creatives, each with their own phone or laptop, a tumbler for water, and their Bible. Some don't follow Jesus yet.</dd>
+      </dl>
+
+      <h3 class="subhead">Our mentors &amp; judges</h3>
+      <ul class="mlist">
+        <li><span class="avatar sm" aria-hidden="true">K</span><div><b>Katrina Gadong</b><p>Communications Consultant for Government, Non-profits, and Ministries</p></div></li>
+        <li><span class="avatar sm" aria-hidden="true">J</span><div><b>John Gestoso</b><p>Freelance Video Editor and Business Management</p></div></li>
+        <li><span class="avatar sm" aria-hidden="true">F</span><div><b>Francis Conde</b><p>Software / Data Engineering and Architecture</p></div></li>
+      </ul>
+
+      <h3 class="subhead">A coach and a companion</h3>
+      <p class="lead">During the sprint, you're a coach and companion, not a project manager. At presentations you'll also judge, so see the <a href="#judging" data-jump="judging">Judging</a> tab.</p>
+      <ul class="rem">
+        <li><span class="ic">01</span><div><b>Come alongside</b><p>Sit with the team, listen first, and let them lead.</p></div></li>
+        <li><span class="ic">02</span><div><b>Ask, don't tell</b><p>A good question teaches more than a quick fix.</p></div></li>
+        <li><span class="ic">03</span><div><b>Protect their ownership</b><p>The idea, the work, and the credit belong to the participants.</p></div></li>
+        <li><span class="ic">04</span><div><b>Point to Jesus</b><p>Notice and name where God shows up in their ideas, struggles, and breakthroughs.</p></div></li>
+        <li><span class="ic">05</span><div><b>Care for the whole person</b><p>Watch for tiredness, discouragement, and anyone left out of the team.</p></div></li>
+      </ul>
+
+      <h3 class="subhead">Do and don't</h3>
+      <div class="dodont">
+        <div class="dd do"><h3>Do</h3><ul>
+          <li>Introduce yourself to every team early on Discord</li>
+          <li>Check in at least once every few hours</li>
+          <li>Celebrate small wins out loud</li>
+          <li>Encourage quieter members to share</li>
+          <li>Pray with teams when they are stuck or tired</li>
+          <li>Tell the organizers if something concerns you</li>
+        </ul></div>
+        <div class="dd dont"><h3>Don't</h3><ul>
+          <li>Take over their screen or do the work for them</li>
+          <li>Compare teams or rank ideas privately</li>
+          <li>Overload them with your own opinions</li>
+          <li>Disappear from the server for long stretches</li>
+          <li>Promise things on behalf of the organizers</li>
+          <li>Let anyone work through the night with no rest</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="nonoy" aria-labelledby="nn-h">
+    <div class="wrap">
+      <p class="eyebrow">Our persona</p>
+      <h2 id="nn-h">Everyone makes for Nonoy</h2>
+      <p class="lead">Every team starts from the same person. The rest of his story belongs to each team, so every team's Nonoy will be a little different, and so will what they make for him.</p>
+      <div class="persona">
+        <div class="avatar" aria-hidden="true">N</div>
+        <div>
+          <h3>Nonoy, 19</h3><span class="sub">curious about Jesus</span>
+          <dl class="dl">
+            <dt>Studies</dt><dd>College freshman in Iloilo. His main goal this year is not to fail his classes.</dd>
+            <dt>Home</dt><dd>Grew up in the city and lives with his family in Jaro.</dd>
+            <dt>Free time</dt><dd>Hangs out with friends and has time to browse social media.</dd>
+            <dt>Faith</dt><dd>Grew up in a traditional Filipino family. Curious about God and about Jesus, and willing to talk about what he believes.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <h3 class="subhead" style="margin-top:0">How to use Nonoy</h3>
+      <ul class="bullets">
+        <li>Ask each team to describe <b>their version of Nonoy</b>, and help them keep him specific and real.</li>
+        <li>Ask <b>"How would Nonoy see this?"</b> whenever an idea drifts or the scope keeps growing.</li>
+        <li>Check that what a team makes would truly speak to Nonoy, whether it's a content strategy, a film or reel, or a game.</li>
+      </ul>
+
+      <h3 class="subhead">The team ideation questions</h3>
+      <p class="lead">Each team fills these in on the <a href="nonoy.html">Nonoy page</a>. One teammate answers for the team, and <b>the answers stay on that phone only</b>, so ask to see them early. They're your best starting point.</p>
+      <table class="qtable">
+        <thead><tr><th scope="col">Part</th><th scope="col">Questions teams answer</th></tr></thead>
+        <tbody>
+<tr><th scope="row">01 · His world online</th><td><ul><li>Which apps does he use most?</li><li>What makes him stop scrolling?</li><li>Who does he follow and trust online?</li><li>When is he online?</li></ul></td></tr>
+<tr><th scope="row">02 · His heart this Christmas</th><td><ul><li>What does Christmas look like for Nonoy?</li><li>What is he feeling or struggling with?</li><li>What does he hope for, or quietly long for?</li><li>What does he think about Jesus, church, and Christians, and why?</li></ul></td></tr>
+<tr><th scope="row">03 · The gap</th><td><ul><li>What keeps him from hearing or understanding the gospel?</li><li>What would make him actually listen, or share it with a friend?</li></ul></td></tr>
+<tr><th scope="row">04 · In his own words</th><td>Something Nonoy might actually say or post. English, Hiligaynon, or Taglish all work.</td></tr>
+<tr><th scope="row">05 · Your idea for him</th><td>"Nonoy needs… through…", then: <i>How might we help Nonoy, a curious 19-year-old in Jaro, find [what he needs] through [your format] this Christmas?</i></td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><p>Teams are reminded to <b>pick real details</b>, <b>be specific</b> ("lonely after his barkada moved away" beats "sad sometimes"), and <b>stay curious</b>: ask why at least twice.</p></div>
+
+      <h3 class="subhead">How to use their answers</h3>
+      <ul class="bullets">
+        <li>Read the answers first, then ask follow-up questions instead of giving your own ideas.</li>
+        <li>Spot vague answers and gently help the team get specific with the "ask why twice" habit.</li>
+        <li>Check that their "How might we" statement connects to what they learned in parts 01 to 04.</li>
+        <li>Return to their answers when they're stuck or choosing between ideas.</li>
+        <li>Let the team own and update their answers. Don't rewrite them.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="panel" id="schedule" aria-labelledby="sc-h">
+    <div class="wrap">
+      <p class="eyebrow">Schedule</p>
+      <h2 id="sc-h">Where you're needed, when</h2>
+      <p class="lead">Most mentoring happens on Saturday. Friday and the overnight Discord are optional for mentors, but you're very welcome. The current session lights up while the sprint is live.</p>
+      <div class="days">
+        <div class="day">
+          <div class="dayhead"><span class="dow">Friday</span><span class="date">Nov 20</span><span class="place">ICMAC · optional</span></div>
+          <ol class="sched">
+<li class="row " data-start="2026-11-20T16:00:00+08:00" data-end="2026-11-20T17:00:00+08:00"><time>4:00–5:00 PM</time><div><strong>Doors open</strong><span class="now-tag">Happening now</span></div></li>
+<li class="row meal" data-start="2026-11-20T17:00:00+08:00" data-end="2026-11-20T17:30:00+08:00"><time>5:00–5:30 PM</time><div><strong>Registration, dinner &amp; networking</strong><span class="now-tag">Happening now</span><span class="helps">Greet participants and learn a few names.</span></div></li>
+<li class="row worship" data-start="2026-11-20T17:30:00+08:00" data-end="2026-11-20T18:15:00+08:00"><time>5:30–6:15 PM</time><div><strong>Welcome, worship, What is #HACK? &amp; vision casting</strong><span class="now-tag">Happening now</span></div></li>
+<li class="row key" data-start="2026-11-20T18:15:00+08:00" data-end="2026-11-20T18:30:00+08:00"><time>6:15–6:30 PM</time><div><strong>Official challenge</strong><span class="now-tag">Happening now</span><ul class="steps"><li>Opportunity</li><li>Problem</li><li>Persona</li><li>Prototype</li></ul></div></li>
+<li class="row key" data-start="2026-11-20T18:30:00+08:00" data-end="2026-11-20T18:45:00+08:00"><time>6:30–6:45 PM</time><div><strong>Team formation</strong><span class="now-tag">Happening now</span><span class="helps">Help teams form. Watch for anyone left without a team.</span></div></li>
+<li class="row " data-start="2026-11-20T18:45:00+08:00" data-end="2026-11-20T19:45:00+08:00"><time>6:45–7:45 PM</time><div><strong>#HACK mechanics</strong><span class="now-tag">Happening now</span><span class="helps">Ask questions that help teams find their idea.</span><ul class="steps"><li>Empathy mapping</li><li>Ideation</li><li>Implementation</li></ul></div></li>
+<li class="row " data-start="2026-11-20T19:45:00+08:00" data-end="2026-11-20T19:50:00+08:00"><time>7:45–7:50 PM</time><div><strong>Conclusion &amp; announcements</strong><span class="now-tag">Happening now</span></div></li>
+<li class="row key" data-start="2026-11-20T20:00:00+08:00" data-end="2026-11-21T08:30:00+08:00"><time>8:00 PM–8:30 AM</time><div><strong>Hack away <span class="chip">Online on Discord</span></strong><span class="now-tag">Happening now</span><span class="helps">Optional: check in through channels and voice rooms. Remind teams to rest.</span></div></li>
+          </ol>
+        </div>
+        <div class="day">
+          <div class="dayhead"><span class="dow">Saturday</span><span class="date">Nov 21</span><span class="place">ICMAC · main mentoring day</span></div>
+          <ol class="sched">
+<li class="row worship" data-start="2026-11-21T09:00:00+08:00" data-end="2026-11-21T09:30:00+08:00"><time>9:00–9:30 AM</time><div><strong>Mentors gather at ICMAC · Devotions</strong><span class="now-tag">Happening now</span></div></li>
+<li class="row " data-start="2026-11-21T09:30:00+08:00" data-end="2026-11-21T10:00:00+08:00"><time>9:30–10:00 AM</time><div><strong>Project refining</strong><span class="now-tag">Happening now</span><span class="helps">Ask to see each team's Nonoy answers. Help them narrow scope.</span></div></li>
+<li class="row key" data-start="2026-11-21T10:00:00+08:00" data-end="2026-11-21T11:00:00+08:00"><time>10:00–11:00 AM</time><div><strong>Mentoring with working snacks</strong><span class="now-tag">Happening now</span><span class="helps">Your main block. Sit with your teams, listen first, ask before you advise.</span></div></li>
+<li class="row meal" data-start="2026-11-21T11:00:00+08:00" data-end="2026-11-21T12:30:00+08:00"><time>11:00 AM–12:30 PM</time><div><strong>Lunch</strong><span class="now-tag">Happening now</span></div></li>
+<li class="row key" data-start="2026-11-21T12:30:00+08:00" data-end="2026-11-21T13:00:00+08:00"><time>12:30–1:00 PM</time><div><strong>Refine pitches</strong><span class="now-tag">Happening now</span><span class="helps">Coach the story: what is it, who is it for, why does it matter?</span></div></li>
+<li class="row " data-start="2026-11-21T13:00:00+08:00" data-end="2026-11-21T13:10:00+08:00"><time>1:00–1:10 PM</time><div><strong>Photo ops</strong><span class="now-tag">Happening now</span></div></li>
+<li class="row " data-start="2026-11-21T13:10:00+08:00" data-end="2026-11-21T14:00:00+08:00"><time>1:10–2:00 PM</time><div><strong>More development</strong><span class="now-tag">Happening now</span><span class="helps">Help teams finish one thing well rather than many things halfway.</span></div></li>
+<li class="row key" data-start="2026-11-21T14:00:00+08:00" data-end="2026-11-21T16:00:00+08:00"><time>2:00–4:00 PM</time><div><strong>Presentations with working snacks</strong><span class="now-tag">Happening now</span><span class="helps">Judge: score each team on the sheet. Skip a team you mentored closely. Cheer and pray too.</span></div></li>
+<li class="row worship" data-start="2026-11-21T16:00:00+08:00" data-end="2026-11-21T16:45:00+08:00"><time>4:00–4:45 PM</time><div><strong>What's next? · Sharing time</strong><span class="now-tag">Happening now</span><span class="helps">Help participants reflect on what God did in them and through them.</span></div></li>
+<li class="row worship" data-start="2026-11-21T16:45:00+08:00" data-end="2026-11-21T17:00:00+08:00"><time>4:45–5:00 PM</time><div><strong>Closing: wrap-up &amp; follow-up</strong><span class="now-tag">Happening now</span></div></li>
+<li class="row key" data-start="2026-11-21T17:00:00+08:00" data-end="2026-11-21T17:00:00+08:00"><time>5:00 PM</time><div><strong>Project submission deadline</strong><span class="now-tag">Happening now</span></div></li>
+          </ol>
+        </div>
+      </div>
+      <p class="legend"><i style="background:var(--orange)"></i>sprint milestones <i style="background:var(--yellow)"></i>meals &amp; snacks <i style="background:var(--red)"></i>worship &amp; devotions</p>
+    </div>
+  </section>
+
+  <section class="panel" id="questions" aria-labelledby="qu-h">
+    <div class="wrap">
+      <p class="eyebrow">Coaching questions</p>
+      <h2 id="qu-h">Ask before you answer</h2>
+      <p class="lead">When a team is stuck, try one of these before offering an answer.</p>
+      <table class="qtable">
+        <thead><tr><th scope="col">When they are…</th><th scope="col">Try asking</th></tr></thead>
+        <tbody>
+<tr><th scope="row">Choosing an idea</th><td>Who are you making this for? What problem do they face today?</td></tr>
+<tr><th scope="row">Choosing a format</th><td>Would a content strategy, a film or reel, or a game best carry this idea? What do you enjoy making most as a team?</td></tr>
+<tr><th scope="row">Overwhelmed by scope</th><td>If you could only finish one thing by tomorrow afternoon, what would it be?</td></tr>
+<tr><th scope="row">Stuck on a problem</th><td>What have you already tried? What is the smallest next step?</td></tr>
+<tr><th scope="row">Disagreeing as a team</th><td>What do you each want the result to be? Where do you agree already?</td></tr>
+<tr><th scope="row">Preparing to present</th><td>In one sentence, what do you want people to remember?</td></tr>
+<tr><th scope="row">Feeling discouraged</th><td>What is going well so far? What would help you most right now?</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel" id="care" aria-labelledby="ca-h">
+    <div class="wrap">
+      <p class="eyebrow">Care</p>
+      <h2 id="ca-h">Spiritual care and prayer</h2>
+      <ul class="bullets">
+        <li>Offer to <b>pray with a team</b> (in person, a voice room or chat) at natural moments: when they start, when they're stuck, and when they finish.</li>
+        <li>Keep prayers <b>short, simple, and kind</b>. Invite, never pressure. Some participants may be new to faith.</li>
+        <li>Listen for what God may be stirring in a participant, such as a gift, a calling, or a burden. Gently reflect it back.</li>
+        <li>Be honest about your own journey. Humble stories encourage young people more than polished advice.</li>
+        <li>If someone shares something heavy, listen well, thank them for trusting you, and <b>let the organizers know</b> so they can follow up.</li>
+      </ul>
+
+      <h3 class="subhead">Safety and boundaries</h3>
+      <ul class="bullets">
+        <li><b>Stay visible.</b> Mentor in public channels and open voice rooms. Avoid private one-on-one DMs or calls with participants. If a private chat is needed, bring in a second mentor or an organizer.</li>
+        <li>Remind teams to <b>drink water, eat, take short breaks, and rest</b>.</li>
+        <li><b>Respect privacy.</b> Don't screenshot, record, or post about participants without permission.</li>
+        <li>Keep all communication with participants appropriate and inside the event's Discord server.</li>
+        <li>If you see anything unsafe, unkind, or concerning, <b>tell an organizer right away</b>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="panel" id="judging" aria-labelledby="jd-h">
+    <div class="wrap">
+      <p class="eyebrow">Judging</p>
+      <h2 id="jd-h">What teams are scored on</h2>
+      <p class="lead">Mentors are also the judges. Presentations run 2:00–4:00 PM Saturday. Coach toward these criteria during the sprint, then score with them. If you mentored a team closely, skip scoring that team.</p>
+      <ol class="rubric">
+        <li><b>Understanding of Nonoy</b><span class="pts">20<small>PTS</small></span><p>Specific, real details, not generic ones. The idea grows out of the team's answers about his world, his heart, and his struggles.</p><span class="bands">Top 16–20 · Mid 10–15 · Low 0–9</span></li>
+        <li><b>Bridging the gap</b><span class="pts">25<small>PTS</small></span><p>Speaks to what stands between Nonoy's curiosity and the good news. Clear, faithful, wise about Jesus. Invites conversation, never pressures.</p><span class="bands">Top 20–25 · Mid 13–19 · Low 0–12</span></li>
+        <li><b>Creativity and craft</b><span class="pts">20<small>PTS</small></span><p>A fresh idea, well made for 24 hours. Polished enough to show what it would become.</p><span class="bands">Top 16–20 · Mid 10–15 · Low 0–9</span></li>
+        <li><b>Right format for Nonoy</b><span class="pts">15<small>PTS</small></span><p>The content strategy, film or reel, or game fits where and when Nonoy is online. He could find it, finish it, and share it with a friend.</p><span class="bands">Top 12–15 · Mid 8–11 · Low 0–7</span></li>
+        <li><b>Teamwork and process</b><span class="pts">10<small>PTS</small></span><p>Everyone contributed. The team used mentor feedback and worked well together on Discord.</p><span class="bands">Top 8–10 · Mid 5–7 · Low 0–4</span></li>
+        <li><b>Presentation</b><span class="pts">10<small>PTS</small></span><p>Clear about who it's for, what they made, why, and what comes next. The "How might we" statement connects to the final work.</p><span class="bands">Top 8–10 · Mid 5–7 · Low 0–4</span></li>
+        <li class="total"><b>Total</b><span class="pts">100<small>PTS</small></span></li>
+      </ol>
+      <h3 class="subhead">How to score</h3>
+      <ul class="bullets">
+        <li>Score on your own first, then compare with the other judges and average.</li>
+        <li>Judge what teams made in 24 hours, not how big their idea is.</li>
+        <li><b>Ties:</b> the higher "Bridging the gap" score wins. If still tied, the higher "Understanding of Nonoy" score wins.</li>
+        <li>Use the printed scoring sheet or the online sheet below. Enter your scores in <b>your own judge tab</b>.</li>
+      </ul>
+      <div class="bigcta" style="margin-top:22px">
+        <div><h3>Enter scores online</h3><p>Judges: Katrina, John and Francis. One tab per judge.</p></div>
+        <a class="btn" href="https://docs.google.com/spreadsheets/d/1K08Z-HG6gotiwzPXp184LLIgIyHWg6B9xP-99Og5N6g/edit?usp=sharing" target="_blank" rel="noopener">Open scoring sheet ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="checklist-panel" aria-labelledby="ck-h">
+    <div class="wrap">
+      <p class="eyebrow">Before you come</p>
+      <h2 id="ck-h">Mentor checklist</h2>
+      <p class="lead">Ticks are saved on this phone only.</p>
+      <ul class="checklist" id="checklist">
+        <li><input type="checkbox" id="mc1"><label for="mc1"><b>I know my assigned team(s)</b><span>and have introduced myself on Discord.</span></label></li>
+        <li><input type="checkbox" id="mc2"><label for="mc2"><b>I understand the formats</b><span>Teams may make a content strategy, a film or reel, or a game.</span></label></li>
+        <li><input type="checkbox" id="mc3"><label for="mc3"><b>I know who Nonoy is</b><span>and have read the team ideation questions.</span></label></li>
+        <li><input type="checkbox" id="mc4"><label for="mc4"><b>I've read the schedule</b><span>and know where to be and when: ICMAC, 9:00 AM Saturday.</span></label></li>
+        <li><input type="checkbox" id="mc5"><label for="mc5"><b>I can reach the organizers</b><span>Jonah's number is saved and I've joined the Discord server.</span></label></li>
+        <li><input type="checkbox" id="mc6"><label for="mc6"><b>I'm packed</b><span>Water, charger, and my Bible.</span></label></li>
+        <li><input type="checkbox" id="mc8"><label for="mc8"><b>I've read the judging criteria</b><span>and know to skip scoring a team I mentored closely.</span></label></li>
+        <li><input type="checkbox" id="mc7"><label for="mc7"><b>I've prayed</b><span>for the participants and for this weekend.</span></label></li>
+      </ul>
+      <p class="progress" id="ck-progress" aria-live="polite">0 of 8 ready</p>
+
+      <h3 class="subhead">Quick reference</h3>
+      <dl class="dl">
+        <dt>Organizer</dt><dd>Jonah · <a href="tel:+639162451641">0916 245 1641</a></dd>
+        <dt>Meet at</dt><dd>ICMAC, Smallville · 9:00 AM Saturday. You're also welcome on Friday from 4:00 PM.</dd>
+        <dt>Discord</dt><dd><a href="http://ndgt.us/discord" target="_blank" rel="noopener">ndgt.us/discord</a></dd>
+      </dl>
+      <p class="thanks">Thank you for giving your weekend. What you pour into these young creatives will last long after the sprint ends.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Questions? Jonah · 0916 245 1641 · #HACK is an initiative of Indigitous</p>
+  </div>
+</footer>
+
+<script>
+
+/* Tabs: show one panel at a time, chosen from the link hash */
+class TabNav {
+  constructor(links, panels, start) { this.links = links; this.panels = panels; this.start = start; }
+  show(name) {
+    if (!this.panels.some(p => p.id === name)) name = this.start;
+    this.panels.forEach(p => { p.hidden = p.id !== name; });
+    this.links.forEach(a => { if (a.dataset.tab === name) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  }
+  open(name) {
+    this.show(name);
+    const tabs = document.querySelector(".tabs");
+    if (window.scrollY > tabs.offsetTop) window.scrollTo({ top: tabs.offsetTop });
+  }
+  wire() {
+    this.links.forEach(a => a.addEventListener("click", e => {
+      e.preventDefault();
+      const name = a.dataset.tab;
+      this.open(name);
+      try { history.replaceState(null, "", "#" + name); } catch (err) {}
+    }));
+    window.addEventListener("hashchange", () => this.open(location.hash.slice(1)));
+    this.show(location.hash.slice(1));
+  }
+}
+
+
+/* Live schedule: dim past sessions, highlight the current one */
+class LiveSchedule {
+  constructor(rows, pill) { this.rows = rows; this.pill = pill; }
+  update(now = Date.now()) {
+    let current = null;
+    this.rows.forEach(r => {
+      const s = Date.parse(r.dataset.start), e = Date.parse(r.dataset.end);
+      const isNow = now >= s && (now < e || (s === e && now < s + 60000));
+      r.classList.toggle("now", isNow);
+      r.classList.toggle("done", now >= e && !isNow);
+      if (isNow) current = r.querySelector("strong").textContent;
+    });
+    if (current) this.pill.innerHTML = "<b>Now:</b> " + current;
+  }
+  start() { this.update(); setInterval(() => this.update(), 30000); }
+}
+
+/* Mentor checklist, remembered on this phone only */
+class Checklist {
+  constructor(boxes, out) { this.boxes = boxes; this.out = out; this.key = "hackxmas-mentor-checklist"; }
+  load() { try { const saved = JSON.parse(localStorage.getItem(this.key) || "[]"); this.boxes.forEach(b => { b.checked = saved.includes(b.id); }); } catch (e) {} }
+  save() { try { localStorage.setItem(this.key, JSON.stringify(this.boxes.filter(b => b.checked).map(b => b.id))); } catch (e) {} }
+  render() { const n = this.boxes.filter(b => b.checked).length; this.out.textContent = n === this.boxes.length ? "All set. See you at ICMAC!" : `${n} of ${this.boxes.length} ready`; }
+  wire() { this.load(); this.render(); this.boxes.forEach(b => b.addEventListener("change", () => { this.save(); this.render(); })); }
+}
+
+new TabNav([...document.querySelectorAll(".tabs a")], [...document.querySelectorAll(".panel")], "role").wire();
+new LiveSchedule([...document.querySelectorAll(".sched .row")], document.getElementById("status-pill")).start();
+new Checklist([...document.querySelectorAll("#checklist input")], document.getElementById("ck-progress")).wire();
+</script>
+</body>
+</html>
