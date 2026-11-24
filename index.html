@@ -250,7 +250,7 @@ footer p{font-family:var(--mono);font-size:var(--step--1);color:var(--muted)}
       <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="7" y="8" width="3" height="3" fill="currentColor"/><rect x="2" y="19" width="20" height="2.4" fill="currentColor"/></svg>
       <span>INDIGITOUS <span class="city">ILOILO</span></span>
     </a>
-    <a class="navcta" href="#register">Register · ₱200</a>
+    <a class="navcta" href="results.html">Celebrate the results →</a>
   </div>
 </header>
 
@@ -271,7 +271,7 @@ footer p{font-family:var(--mono);font-size:var(--step--1);color:var(--muted)}
           <li><b>Who</b> Anyone who wants to create for Jesus</li>
         </ul>
         <div class="ctas">
-          <a class="btn btn-primary" href="#register">Save my slot →</a>
+          <a class="btn btn-primary" href="results.html">Celebrate the results →</a>
           <a class="btn btn-ghost" href="#program">See the program</a>
         </div>
         <div class="countdown" role="timer" aria-live="off" aria-label="Countdown to kickoff">
@@ -460,16 +460,15 @@ footer p{font-family:var(--mono);font-size:var(--step--1);color:var(--muted)}
     </div>
   </section>
 
-  <section class="band register" id="register" aria-labelledby="rg-title">
+  <section class="band register" id="celebrate" aria-labelledby="rg-title">
     <div class="wrap reg-grid">
       <div>
-        <p class="eyebrow">Registration</p>
-        <h2 id="rg-title">Your gift could reach someone this Christmas.</h2>
-        <p>₱200 · meals + tote bag · 24 hours that count. Registration closes November 16, 2026.</p>
+        <p class="eyebrow">That's a wrap</p>
+        <h2 id="rg-title">Celebrate what God did in 24 hours.</h2>
+        <p>Four teams, four prototypes for Nonoy, and a weekend full of stories. See what they made, what participants took away, and photos from the event.</p>
       </div>
       <div>
-        <a class="btn btn-dark" id="register-btn" href="#register">Register now →</a>
-        <p class="regmsg" id="reg-msg" aria-live="polite"></p>
+        <a class="btn btn-dark" href="results.html">Celebrate the results →</a>
       </div>
     </div>
   </section>
@@ -512,23 +511,6 @@ class Countdown {
     return true;
   }
   start() { if (this.tick()) { const t = setInterval(() => { if (!this.tick()) clearInterval(t); }, 1000); } }
-}
-
-/* ---------- Register button ---------- */
-class RegisterButton {
-  constructor(config, btn, msg) { this.config = config; this.btn = btn; this.msg = msg; }
-  wire() {
-    if (this.config.hasRegistrationLink()) {
-      this.btn.href = this.config.registrationUrl;
-      this.btn.target = "_blank";
-      this.btn.rel = "noopener";
-    } else {
-      this.btn.addEventListener("click", e => {
-        e.preventDefault();
-        this.msg.textContent = "Registration opens soon. Watch this space!";
-      });
-    }
-  }
 }
 
 /* ---------- Confetti across the top, like the poster ---------- */
@@ -574,7 +556,6 @@ class Confetti {
 
 const config = new EventConfig();
 new Countdown(config, ["cd-d", "cd-h", "cd-m", "cd-s"]).start();
-new RegisterButton(config, document.getElementById("register-btn"), document.getElementById("reg-msg")).wire();
 new Confetti(document.getElementById("confetti")).start();
 </script>
 </body>
