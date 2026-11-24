@@ -90,15 +90,63 @@ main{padding-block:28px 56px}
 .posts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .posts img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;display:block}
 .results video{width:100%;max-height:420px;border-radius:8px;background:#000;display:block;margin-bottom:12px}
+.embed{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:8px;background:#000;margin-bottom:12px}
+.embed.tall{aspect-ratio:9/16;max-width:300px;margin-inline:auto}
+.watch{font-family:var(--mono);font-size:.82rem;display:inline-block;margin-bottom:14px}
 .steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:8px}
 .steps li{counter-increment:s;display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;font-size:.95rem}
 .steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-weight:800;color:var(--yellow)}
 .note{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:12px}
 
+/* who came: infographic */
+.crowd{border-top:1px solid var(--line);padding-block:44px 56px}
+.crowd h2 .script{font-family:var(--script);font-weight:400;color:var(--yellow);font-size:1.5em;letter-spacing:0;margin-left:.15em}
+.crowd .lead{color:var(--muted);margin-bottom:26px}
+.bignums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.bignum{background:var(--panel);padding:18px 16px;min-width:0}
+.bignum b{display:block;font-family:var(--mono);font-weight:800;font-size:clamp(2rem,1.5rem + 2vw,3rem);line-height:1;color:var(--orange);font-variant-numeric:tabular-nums}
+.bignum b small{font-size:.5em;color:var(--paper)}
+.bignum span{display:block;margin-top:8px;font-size:.88rem;color:var(--muted)}
+.ig{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:14px}
+.ig .box h3{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.ig .box h3 small{font-family:var(--mono);font-weight:400;font-size:.72rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.ig .wide{grid-column:1/-1}
+.people{display:flex;flex-wrap:wrap;gap:10px 8px;margin:14px 0 12px}
+.person{width:26px;height:40px;position:relative}
+.person::before{content:"";position:absolute;left:7px;top:0;width:12px;height:12px;border-radius:50%;background:currentColor}
+.person::after{content:"";position:absolute;left:2px;top:15px;width:22px;height:25px;border-radius:11px 11px 4px 4px;background:currentColor}
+.person.yes{color:var(--orange)}
+.person.no{color:#3a3733}
+.person.yes:nth-child(odd)::before{box-shadow:0 -5px 0 -2px var(--red)}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+.key i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.churches{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:9px}
+.churches li{display:grid;grid-template-columns:minmax(0,12em) minmax(0,1fr) 1.6em;gap:10px;align-items:center;font-size:.88rem}
+.churches .bar{height:14px;border-radius:3px;background:var(--line);overflow:hidden;display:flex}
+.churches .bar i{display:block;height:100%;background:var(--orange)}
+.churches .bar i + i{background:#5a4a40}
+.churches b{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+.strip{display:flex;height:42px;border-radius:8px;overflow:hidden;margin:16px 0 12px;font-family:var(--mono);font-weight:800;font-size:.95rem}
+.strip span{display:grid;place-items:center;color:#120806;min-width:0}
+.occ-1{background:var(--yellow)}.occ-2{background:var(--orange)}.occ-3{background:var(--red)}.occ-4{background:var(--muted)}
+.occ-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 14px;font-size:.88rem}
+.occ-key i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+.bubbles{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.bubble{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-radius:50%;width:calc(54px + var(--n) * 9px);aspect-ratio:1;background:rgba(239,78,37,calc(.12 + var(--n) * .05));border:1px solid var(--orange);padding:6px;line-height:1.15}
+.bubble b{font-family:var(--mono);font-weight:800;font-size:calc(.9rem + var(--n) * .07rem);color:var(--paper)}
+.bubble span{font-size:.68rem;color:var(--paper)}
+.bubble em{font-style:normal;font-family:var(--mono);font-size:.62rem;color:var(--yellow)}
+.fun{margin-top:14px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.fun b{color:var(--yellow);font-weight:600}
+
 footer{padding-block:28px;border-top:1px solid var(--line)}
 footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
 
 @media (max-width:720px){
+  .bignums{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ig{grid-template-columns:1fr}
+  .churches li{grid-template-columns:minmax(0,9em) minmax(0,1fr) 1.6em}
+  .bubble{width:calc(48px + var(--n) * 7px)}
   .detail{grid-template-columns:1fr}
   .posts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .nav{width:38px;height:38px;font-size:1rem}
@@ -162,6 +210,77 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
   </div>
 </main>
 
+<section class="crowd" id="who-came" aria-labelledby="wc-h">
+  <div class="wrap">
+    <p class="eyebrow">The people behind the projects</p>
+    <h2 id="wc-h">Who showed up<span class="script">to hack</span></h2>
+    <p class="lead">Students, pastors, designers, developers and musicians from churches across Iloilo, all building for one 19-year-old named Nonoy.</p>
+
+    <div class="bignums">
+      <div class="bignum"><b>16</b><span>creatives registered</span></div>
+      <div class="bignum"><b>7</b><span>churches &amp; ministries</span></div>
+      <div class="bignum"><b>69<small>%</small></b><span>can lead or mentor others</span></div>
+      <div class="bignum"><b>3.3</b><span>skills per person, on average</span></div>
+    </div>
+
+    <div class="ig">
+      <div class="box wide">
+        <h3>Ready to mentor <small>11 of 16 said yes</small></h3>
+        <div class="people" role="img" aria-label="16 people: 11 can lead or mentor others, 5 not yet">
+          <i class="person yes"></i><i class="person yes"></i><i class="person yes"></i><i class="person yes"></i><i class="person yes"></i><i class="person yes"></i><i class="person yes"></i><i class="person yes"></i><i class="person yes"></i><i class="person yes"></i><i class="person yes"></i><i class="person no"></i><i class="person no"></i><i class="person no"></i><i class="person no"></i><i class="person no"></i>
+        </div>
+        <div class="key"><span><i style="background:var(--orange)"></i>Can lead or mentor</span><span><i style="background:#3a3733"></i>Not yet</span></div>
+        <p class="fun">All <b>3 of 3</b> ministry workers and <b>4 of 7</b> students raised their hand to mentor.</p>
+      </div>
+
+      <div class="box">
+        <h3>Where they worship <small>people</small></h3>
+        <ul class="churches">
+          <li><span>Overflowing Love Global Church</span><span class="bar"><i style="width:60%"></i><i style="width:40%"></i></span><b>5</b></li>
+          <li><span>Journey Church</span><span class="bar"><i style="width:40%"></i><i style="width:20%"></i></span><b>3</b></li>
+          <li><span>Christ's Commission Fellowship</span><span class="bar"><i style="width:40%"></i></span><b>2</b></li>
+          <li><span>Greenhills Christian Fellowship</span><span class="bar"><i style="width:20%"></i><i style="width:20%"></i></span><b>2</b></li>
+          <li><span>Ikthus Church Iloilo</span><span class="bar"><i style="width:20%"></i><i style="width:20%"></i></span><b>2</b></li>
+          <li><span>Cru (campus ministry)</span><span class="bar"><i style="width:20%"></i></span><b>1</b></li>
+          <li><span>Iloilo C&amp;MA Church</span><span class="bar"><i style="width:20%"></i></span><b>1</b></li>
+        </ul>
+        <p class="fun">Bright part of each bar = can mentor.</p>
+      </div>
+
+      <div class="box">
+        <h3>What they do <small>occupation</small></h3>
+        <div class="strip" role="img" aria-label="7 students, 4 working professionals, 3 ministry workers, 2 between jobs">
+          <span class="occ-1" style="flex:7">7</span><span class="occ-2" style="flex:4">4</span><span class="occ-3" style="flex:3">3</span><span class="occ-4" style="flex:2">2</span>
+        </div>
+        <div class="occ-key">
+          <span><i class="occ-1"></i>Students</span>
+          <span><i class="occ-2"></i>Working professionals</span>
+          <span><i class="occ-3"></i>Ministry workers</span>
+          <span><i class="occ-4"></i>Between jobs</span>
+        </div>
+        <p class="fun">From a software engineer to a campus missionary to a real estate endorser.</p>
+      </div>
+
+      <div class="box wide">
+        <h3>Their superpowers <small>primary skill sets</small></h3>
+        <div class="bubbles">
+          <span class="bubble" style="--n:11"><b>11</b><span>Video &amp; Reels</span><em>8 mentor</em></span>
+          <span class="bubble" style="--n:9"><b>9</b><span>Photography</span><em>6 mentor</em></span>
+          <span class="bubble" style="--n:7"><b>7</b><span>Graphic Design</span><em>4 mentor</em></span>
+          <span class="bubble" style="--n:7"><b>7</b><span>Music</span><em>4 mentor</em></span>
+          <span class="bubble" style="--n:5"><b>5</b><span>Social Media</span><em>4 mentor</em></span>
+          <span class="bubble" style="--n:5"><b>5</b><span>Development</span><em>3 mentor</em></span>
+          <span class="bubble" style="--n:5"><b>5</b><span>Writing</span><em>3 mentor</em></span>
+          <span class="bubble" style="--n:2"><b>2</b><span>Campaigns</span><em>2 mentor</em></span>
+          <span class="bubble" style="--n:1"><b>1</b><span>AI Prompts</span><em>1 mentor</em></span>
+        </div>
+        <p class="fun">Most people picked more than one. Video was the crowd favorite: <b>11 of 16</b> make reels.</p>
+      </div>
+    </div>
+    <p class="note">Based on the #HACK Iloilo 2026 registration form (16 responses), so it counts who signed up, which may differ slightly from who came on the day.</p>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <p>Slides shared by each team from their Saturday presentations. #HACK is an initiative of Indigitous.</p>
@@ -198,7 +317,9 @@ const TEAMS = [
       ["How it bridges to the good news", "Relatable storytelling and original music that move Nonoy from hearing about Jesus to knowing Him, and show that Christmas is God's gift of salvation."],
       ["What's next", "Monthly themed songs and videos about the struggles of today's generation, plus dance challenges built on the song's catchiest parts."],
     ],
-    results: `<p>Their follow-up plan for everyone who watches:</p>
+    results: `<iframe class="embed" src="https://drive.google.com/file/d/1FU2Wtg-fPzm3-lrTc0T1l9dFvRjSWVU2/preview" title="The Christ Commissioners music video" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+      <a class="watch" href="https://drive.google.com/file/d/1FU2Wtg-fPzm3-lrTc0T1l9dFvRjSWVU2/view" target="_blank" rel="noopener">Open the music video in Google Drive ↗</a>
+      <p>Their follow-up plan for everyone who watches:</p>
       <ol class="steps">
         <li>Post a question in the comments so viewers share their thoughts.</li>
         <li>Send a friendly, no-pressure message to anyone who comments, reacts or shows interest.</li>
@@ -227,7 +348,9 @@ const TEAMS = [
       ["How it bridges to the good news", "Nonoy is searching. His need for community becomes the door to discovering more about Jesus."],
       ["What's next", "A call to action to message the page, which connects Nonoy with a Christian community where someone shares the gospel and starts to disciple him."],
     ],
-    results: `<p>The campaign journey they designed:</p>
+    results: `<iframe class="embed tall" src="https://drive.google.com/file/d/1SBtv7GLLHHR04eMVyPydEKUzA_6XPHjo/preview" title="4J's campaign reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+      <a class="watch" href="https://drive.google.com/file/d/1SBtv7GLLHHR04eMVyPydEKUzA_6XPHjo/view" target="_blank" rel="noopener">Open the reel in Google Drive ↗</a>
+      <p>The campaign journey they designed:</p>
       <ol class="steps">
         <li>Relate with him</li>
         <li>Make him realize his need</li>
