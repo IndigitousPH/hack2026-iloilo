@@ -203,6 +203,23 @@ p{margin:0;max-width:62ch}
 .register .tba{border-color:#120806;color:#120806}
 .regmsg{font-family:var(--mono);font-size:.9rem;margin-top:12px;min-height:1.4em}
 
+/* page directory */
+.pagegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:8px}
+.pagecard{display:flex;flex-direction:column;gap:8px;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px;text-decoration:none;color:var(--paper);transition:border-color .15s ease,transform .15s ease}
+.pagecard:hover{border-color:var(--orange);transform:translateY(-2px)}
+.pagecard .tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.pagecard h3{margin:0}
+.pagecard p{color:var(--muted);font-size:var(--step--1);flex:1}
+.pagecard .go{font-family:var(--mono);font-weight:600;font-size:.88rem;color:var(--yellow)}
+.pagecard.feature{grid-column:1/-1;background:var(--orange);border-color:var(--orange);color:#120806}
+.pagecard.feature .tag,.pagecard.feature p{color:#2a0f07}
+.pagecard.feature .go{color:#0b0b0b}
+.pagecard.feature h3{font-size:var(--step-2)}
+.footnav{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:var(--step--1)}
+.footnav a{color:var(--paper);text-decoration:none}
+.footnav a:hover{color:var(--yellow)}
+@media (max-width:760px){.pagegrid{grid-template-columns:1fr}}
+
 footer{padding-block:40px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
 footer p{font-family:var(--mono);font-size:var(--step--1);color:var(--muted)}
@@ -270,6 +287,39 @@ footer p{font-family:var(--mono);font-size:var(--step--1);color:var(--muted)}
       </div>
     </div>
   </section>
+
+  <nav class="band pages" id="pages" aria-labelledby="pages-title">
+    <div class="wrap">
+      <p class="eyebrow">Explore #HACK Christmas Iloilo</p>
+      <h2 id="pages-title">All the pages</h2>
+      <div class="pagegrid">
+        <a class="pagecard feature" href="showcase.html">
+          <span class="tag">Showcase</span>
+          <h3>See what the teams made</h3>
+          <p>Every team's pitch deck as a slideshow, their videos, who came, and photos from the weekend.</p>
+          <span class="go">Open the showcase →</span>
+        </a>
+        <a class="pagecard" href="participants.html">
+          <span class="tag">Participant hub</span>
+          <h3>Program, submissions &amp; what's next</h3>
+          <p>The schedule, project submission, reminders, global #HACK events and next steps.</p>
+          <span class="go">Open the hub →</span>
+        </a>
+        <a class="pagecard" href="nonoy.html">
+          <span class="tag">Persona</span>
+          <h3>Meet Nonoy</h3>
+          <p>The 19-year-old from Jaro every team built for, with a template to fill in his story.</p>
+          <span class="go">Meet Nonoy →</span>
+        </a>
+        <a class="pagecard" href="mentors.html">
+          <span class="tag">Mentors</span>
+          <h3>Mentor guide</h3>
+          <p>The mentor's role, the schedule, coaching questions, care for teams and judging.</p>
+          <span class="go">Read the guide →</span>
+        </a>
+      </div>
+    </div>
+  </nav>
 
   <section class="band city-band" id="iloilo" aria-labelledby="il-title">
     <div class="wrap city-grid">
@@ -433,7 +483,8 @@ footer p{font-family:var(--mono);font-size:var(--step--1);color:var(--muted)}
 
 <footer>
   <div class="wrap">
-    <p>#HACK is an initiative of Indigitous · <a href="https://hack.indigitous.org" target="_blank" rel="noopener">hack.indigitous.org</a></p>
+    <nav class="footnav" aria-label="Site pages"><a href="showcase.html">Showcase</a><a href="participants.html">Participant hub</a><a href="nonoy.html">Meet Nonoy</a><a href="mentors.html">Mentor guide</a></nav>
+    <p>#HACK is an initiative of Indigitous ·<a href="https://hack.indigitous.org" target="_blank" rel="noopener">hack.indigitous.org</a></p>
     <p>Questions? Jonah · <a href="tel:+639162451641">0916 245 1641</a></p>
   </div>
 </footer>

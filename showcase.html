@@ -98,6 +98,19 @@ main{padding-block:28px 56px}
 .steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-weight:800;color:var(--yellow)}
 .note{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:12px}
 
+/* next steps */
+.nextup{border-top:1px solid var(--line);padding-block:44px 52px}
+.nextup .lead{color:var(--muted);margin-bottom:22px}
+.nextgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.nextcard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px;min-width:0}
+.nextcard .who{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.nextcard ul{margin:8px 0 0;padding-left:1.1em;display:grid;gap:6px;color:var(--muted);font-size:.95rem}
+.nextcard li::marker{color:var(--yellow)}
+.nextcta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:var(--orange);color:#120806;border-radius:10px;padding:18px 20px;margin-top:14px}
+.nextcta p{font-weight:500}
+.nextcta .btn{background:#0b0b0b;color:var(--yellow)}
+@media (max-width:720px){.nextgrid{grid-template-columns:1fr}}
+
 /* who came: infographic */
 .crowd{border-top:1px solid var(--line);padding-block:44px 56px}
 .crowd h2 .script{font-family:var(--script);font-weight:400;color:var(--yellow);font-size:1.5em;letter-spacing:0;margin-left:.15em}
@@ -167,7 +180,7 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
     <a class="back" href="participants.html">← Participant hub</a>
     <div class="brandline">INDIGITOUS <span>ILOILO</span></div>
     <h1 class="mark"><span class="hack">#HACK</span><span class="xmas">Christmas</span><span class="hub">Showcase</span></h1>
-    <p class="intro">In 24 hours, four teams built something to help Nonoy, 19, from Jaro, find the true meaning of Christmas. Here's what they made and presented on Saturday, Nov 21.</p>
+    <p class="intro">In 24 hours, four teams built something to help Nonoy, 19, from Jaro, find the true meaning of Christmas. Here's what they made and presented on Saturday, Nov 21. Want to help these projects go further? <a href="participants.html#next">See what's next →</a></p>
   </div>
 </header>
 
@@ -213,6 +226,38 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
     </div>
   </div>
 </main>
+
+<section class="nextup" id="next-steps" aria-labelledby="ns-h">
+  <div class="wrap">
+    <p class="eyebrow">What's next</p>
+    <h2 id="ns-h">This is only the start</h2>
+    <p class="lead">These projects were built in 24 hours. With a little help they can reach a lot more people like Nonoy this Christmas and beyond.</p>
+    <div class="nextgrid">
+      <div class="nextcard">
+        <span class="who">For participants</span>
+        <h3>Keep building</h3>
+        <ul>
+          <li>Finish and launch your project this Christmas</li>
+          <li>Join the #HACK2026 Celebration and the post-#HACK calls for creators, developers and gamers</li>
+          <li>Grow as a leader in the Leadership Lab, starting February 2027</li>
+        </ul>
+      </div>
+      <div class="nextcard">
+        <span class="who">For ministry partners</span>
+        <h3>Put these projects to work</h3>
+        <ul>
+          <li>Share a team's posts, video, reel or game in your church's Christmas outreach</li>
+          <li>Adopt a team: give them a platform, feedback or a mentor to keep going</li>
+          <li>Send your creatives and youth to the post-#HACK events and the next #HACK</li>
+        </ul>
+      </div>
+    </div>
+    <div class="nextcta">
+      <p>Dates, sign-up links and resources for everyone are on the participant hub.</p>
+      <a class="btn" href="participants.html#next">See all next steps →</a>
+    </div>
+  </div>
+</section>
 
 <section class="crowd" id="who-came" aria-labelledby="wc-h">
   <div class="wrap">
