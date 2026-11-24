@@ -90,6 +90,12 @@ main .lead{color:var(--muted);margin-bottom:22px}
 .photoshow .stage{aspect-ratio:3/2}
 .photoshow + .note{margin-top:12px}
 
+/* result previews */
+.posts.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.clip{display:block;width:100%;aspect-ratio:16/9;border-radius:8px;background:#000;margin-bottom:10px}
+.shot{display:block;width:100%;border-radius:8px;border:1px solid var(--line);margin-bottom:10px;aspect-ratio:1;object-fit:cover}
+.shot.tall{aspect-ratio:9/16;max-width:240px}
+
 /* prototype note */
 .proto{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;border:1px dashed var(--yellow);border-radius:12px;padding:18px 20px;margin-bottom:22px;background:rgba(239,233,116,.05)}
 .proto-tag{font-family:var(--mono);font-weight:800;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;background:var(--yellow);color:#0b0b0b;padding:4px 10px;border-radius:4px;white-space:nowrap}
@@ -309,12 +315,10 @@ const TEAMS = [
       ["How it bridges to the good news", "The posts meet him in his struggles, make God's Word feel relevant, and invite him to join church fellowships and activities."],
       ["What's next", "Bring the same strategy to their church's own social media pages and keep posting faith-based content."],
     ],
-    results: `<p>Seven finished posts from the campaign, ready to schedule.</p>
-      <div class="posts">${[
+    results: `<p>A peek at the campaign: 3 of the 7 posts they designed.</p>
+      <div class="posts three">${[
         "you don't have to figure everything out at 19", "your grades are not your identity",
-        "not everyone who leaves your life is a loss", "choose people who help you grow",
-        "you don't always have to pretend you're okay", "your life has a purpose beyond what you can see right now",
-        "to know God personally"].map((t, i) => `<img src="showcase/nonoy/post${i + 1}.webp" alt="Campaign post: ${t}" loading="lazy">`).join("")}</div>`,
+        "your life has a purpose beyond what you can see right now"].map((t, i) => `<img src="showcase/nonoy/post${[1, 2, 6][i]}.webp" alt="Campaign post: ${t}" loading="lazy">`).join("")}</div>`,
   },
   {
     id: "commissioners", team: "The Christ Commissioners", title: "A Christmas song for Nonoy", format: "Music video",
@@ -326,8 +330,8 @@ const TEAMS = [
       ["How it bridges to the good news", "Relatable storytelling and original music that move Nonoy from hearing about Jesus to knowing Him, and show that Christmas is God's gift of salvation."],
       ["What's next", "Monthly themed songs and videos about the struggles of today's generation, plus dance challenges built on the song's catchiest parts."],
     ],
-    results: `<iframe class="embed" src="https://drive.google.com/file/d/1FU2Wtg-fPzm3-lrTc0T1l9dFvRjSWVU2/preview" title="The Christ Commissioners music video" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
-      <a class="watch" href="https://drive.google.com/file/d/1FU2Wtg-fPzm3-lrTc0T1l9dFvRjSWVU2/view" target="_blank" rel="noopener">Open the music video in Google Drive ↗</a>
+    results: `<video class="clip" controls preload="none" playsinline poster="showcase/commissioners/song-poster.webp" src="showcase/commissioners/song-excerpt.mp4" aria-label="10-second excerpt of the Christ Commissioners' song"></video>
+      <p>A 10-second excerpt from the chorus of their original song.</p>
       <p>Their follow-up plan for everyone who watches:</p>
       <ol class="steps">
         <li>Post a question in the comments so viewers share their thoughts.</li>
@@ -344,9 +348,8 @@ const TEAMS = [
       ["How it bridges to the good news", "Players walk in Angelo's shoes and discover that their worth isn't their achievements: salvation is a gift received by faith (Ephesians 2:8–9)."],
       ["What's next", "Grow it into a fully playable game and partner with Christian creators, gamers, campus ministries and youth groups to reach more students."],
     ],
-    results: `<video controls preload="metadata" playsinline src="showcase/quest/concept.mp4" aria-label="Quest for Grace concept video"></video>
-      <p>The concept video, plus a playable prototype built in Canva.</p>
-      <a class="btn" href="https://www.canvaqr.com/RGYJO9o-kI" target="_blank" rel="noopener">Play Quest for Grace ↗</a>`,
+    results: `<img class="shot" src="showcase/quest/concept-shot.webp" alt="Still from the Quest for Grace concept video: Angelo walks through a glowing stone archway into Aethelgard" loading="lazy">
+      <p>A still from their concept video. They also built a first playable prototype in Canva.</p>`,
   },
   {
     id: "4js", team: "4J's", title: "From doom scrolling to community", format: "Outreach campaign",
@@ -357,8 +360,8 @@ const TEAMS = [
       ["How it bridges to the good news", "Nonoy is searching. His need for community becomes the door to discovering more about Jesus."],
       ["What's next", "A call to action to message the page, which connects Nonoy with a Christian community where someone shares the gospel and starts to disciple him."],
     ],
-    results: `<iframe class="embed tall" src="https://drive.google.com/file/d/1SBtv7GLLHHR04eMVyPydEKUzA_6XPHjo/preview" title="4J's campaign reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
-      <a class="watch" href="https://drive.google.com/file/d/1SBtv7GLLHHR04eMVyPydEKUzA_6XPHjo/view" target="_blank" rel="noopener">Open the reel in Google Drive ↗</a>
+    results: `<img class="shot tall" src="showcase/beige/reel-shot.webp" alt="Still from the 4J's reel: a group gathers on a field at sunset with the words find a friend this Christmas" loading="lazy">
+      <p>A still from their reel, which ends with an invitation to message the page.</p>
       <p>The campaign journey they designed:</p>
       <ol class="steps">
         <li>Relate with him</li>
