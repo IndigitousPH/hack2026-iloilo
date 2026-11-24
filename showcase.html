@@ -152,6 +152,32 @@ main{padding-block:28px 56px}
 .fun{margin-top:14px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
 .fun b{color:var(--yellow);font-weight:600}
 
+/* evaluation */
+.subhead{font-family:var(--mono);font-weight:800;font-size:1.25rem;margin:34px 0 14px}
+.takeaways{list-style:none;counter-reset:t;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:12px}
+.takeaways li{counter-increment:t;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;font-size:.92rem;color:var(--muted);min-width:0}
+.takeaways li::before{content:counter(t);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--yellow);color:#0b0b0b;font-family:var(--mono);font-weight:800;margin-bottom:10px}
+.takeaways b{display:block;color:var(--paper);font-family:var(--mono);font-weight:600;margin-bottom:4px}
+.quotes{columns:3 260px;column-gap:14px;margin-top:28px}
+.quote{break-inside:avoid;margin:0 0 14px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:10px;padding:18px 18px 14px;position:relative}
+.quote blockquote{margin:0;font-size:1rem;line-height:1.5}
+.quote blockquote::before{content:"\201C";display:block;font-family:var(--script);font-size:3.4rem;line-height:.6;color:var(--yellow);height:.45em}
+.quote figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.quote.big{background:var(--orange);border-color:var(--orange);color:#120806}
+.quote.big blockquote{font-family:var(--script);font-size:2.6rem;line-height:1}
+.quote.big blockquote::before{color:#0b0b0b}
+.quote.big figcaption{color:#2a0f07}
+.sessions{list-style:none;margin:14px 0 12px;padding:0;display:grid;gap:9px}
+.sessions li{display:grid;grid-template-columns:minmax(0,11em) minmax(0,1fr) 1.4em;gap:10px;align-items:center;font-size:.88rem}
+.sessions b{font-family:var(--mono);text-align:right;color:var(--orange)}
+.sbar{display:flex;height:14px;border-radius:3px;overflow:hidden;gap:2px}
+.sbar .vr{background:var(--orange)}.sbar .r{background:#5a4a40}.sbar .nr{background:#3a3733}.sbar .na{border:1px solid #3a3733;border-radius:2px}
+.logi{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:0}
+.logi li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.logi b{font-family:var(--mono);color:var(--yellow);font-variant-numeric:tabular-nums}
+.better{margin:10px 0 0;padding-left:1.1em;display:grid;gap:6px;color:var(--muted);font-size:.95rem}
+.better li::marker{color:var(--yellow)}
+
 .thanks{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);margin-bottom:22px}
 .photoshow .stage{aspect-ratio:3/2}
 .photoshow + .note{margin-top:12px}
@@ -164,6 +190,8 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
   .ig{grid-template-columns:1fr}
   .churches li{grid-template-columns:minmax(0,9em) minmax(0,1fr) 1.6em}
   .bubble{width:calc(48px + var(--n) * 7px)}
+  .sessions li{grid-template-columns:minmax(0,8.5em) minmax(0,1fr) 1.4em}
+  .quote.big blockquote{font-size:2.2rem}
   .detail{grid-template-columns:1fr}
   .posts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .nav{width:38px;height:38px;font-size:1rem}
@@ -327,6 +355,79 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
       </div>
     </div>
     <p class="note">Based on the #HACK Iloilo 2026 registration form (16 responses), so it counts who signed up, which may differ slightly from who came on the day.</p>
+  </div>
+</section>
+
+<section class="crowd" id="feedback" aria-labelledby="fb-h">
+  <div class="wrap">
+    <p class="eyebrow">In their own words</p>
+    <h2 id="fb-h">What participants said<span class="script">after</span></h2>
+    <p class="lead">Nine participants filled in the event evaluation right after the closing on Saturday. Here's what stayed with them.</p>
+
+    <div class="bignums">
+      <div class="bignum"><b>4.7<small>/5</small></b><span>satisfied with the event</span></div>
+      <div class="bignum"><b>4.8<small>/5</small></b><span>relevant and helpful for their work</span></div>
+      <div class="bignum"><b>9<small>/9</small></b><span>rated the event 4 or 5</span></div>
+      <div class="bignum"><b>7<small>/9</small></b><span>want to volunteer for #HACK or Indigitous</span></div>
+    </div>
+
+    <h3 class="subhead">Key takeaways</h3>
+    <ol class="takeaways">
+      <li><b>Creativity can carry the gospel.</b> Reels, posts, songs and games are real ways to share Jesus, and God-given talents are meant for it.</li>
+      <li><b>Christmas is an open door.</b> People are more willing to listen this season, so it's the time to share.</li>
+      <li><b>Make it approachable.</b> The good news should be easy for someone who has never heard it, like Nonoy, to come close to.</li>
+      <li><b>Better together.</b> Meeting other Christian creatives and building with them was part of the blessing.</li>
+      <li><b>Learning by doing.</b> Mentoring plus a real challenge turned ideas into content in 24 hours.</li>
+    </ol>
+
+    <div class="quotes">
+      <figure class="quote big"><blockquote>Thaaat we can make contents for Jesus!!</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>It's true that during Christmas season, people are very open and willing to listen, so let's grab the opportunity to share Jesus.</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>When we are expected to share the Gospel, it should be suitable for anyone to approach the unreached. It's also a blessing to use our God-given talents to spread the Good News.</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>To share the gospel even through the digital media and to sow seeds of faith as we go along and meet new people.</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>To be connected with other Christians and collaborate in making content to share the gospel in social media.</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>I was trained and mentored in doing evangelism via online platforms, spreading the word of God in a faster way.</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>It was a great experience combining theoretical and practical practices and expertise.</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>Thank you for holding this kind of event. It has reminded us again to use social media in sharing Jesus.</blockquote><figcaption>Participant</figcaption></figure>
+    </div>
+
+    <div class="ig">
+      <div class="box">
+        <h3>Most relevant sessions <small>of 9 answers</small></h3>
+        <ul class="sessions">
+          <li><span>Persona (Nonoy)</span><span class="sbar"><i class="vr" style="flex:7"></i><i class="r" style="flex:2"></i></span><b>7</b></li>
+          <li><span>Vision casting</span><span class="sbar"><i class="vr" style="flex:6"></i><i class="r" style="flex:3"></i></span><b>6</b></li>
+          <li><span>Mentoring</span><span class="sbar"><i class="vr" style="flex:6"></i><i class="r" style="flex:3"></i></span><b>6</b></li>
+          <li><span>Commissioning</span><span class="sbar"><i class="vr" style="flex:6"></i><i class="r" style="flex:3"></i></span><b>6</b></li>
+          <li><span>#HACK for Christmas group</span><span class="sbar"><i class="vr" style="flex:5"></i><i class="r" style="flex:4"></i></span><b>5</b></li>
+          <li><span>Discord</span><span class="sbar"><i class="vr" style="flex:2"></i><i class="r" style="flex:3"></i><i class="nr" style="flex:3"></i><i class="na" style="flex:1"></i></span><b>2</b></li>
+        </ul>
+        <div class="key"><span><i style="background:var(--orange)"></i>Very relevant (count)</span><span><i style="background:#5a4a40"></i>Relevant</span><span><i style="background:#3a3733"></i>Not relevant</span><span><i style="background:transparent;border:1px solid #3a3733"></i>Didn't attend</span></div>
+      </div>
+      <div class="box">
+        <h3>Logistics <small>average out of 5</small></h3>
+        <ul class="logi">
+          <li><span>Accommodation</span><b>4.9</b></li>
+          <li><span>Venue</span><b>4.9</b></li>
+          <li><span>Overall experience</span><b>4.7</b></li>
+          <li><span>Closing ceremony</span><b>4.7</b></li>
+          <li><span>Welcome kit</span><b>4.6</b></li>
+          <li><span>Communication</span><b>4.6</b></li>
+          <li><span>Activities</span><b>4.6</b></li>
+          <li><span>Program</span><b>4.4</b></li>
+        </ul>
+      </div>
+      <div class="box wide">
+        <h3>What we'll do better next time</h3>
+        <ul class="better">
+          <li>Share more about the challenge ahead of time. One team said the task surprised them, though it pushed them to think deeply about their content.</li>
+          <li>Tighten the program flow, the lowest-rated part of the logistics.</li>
+          <li>Rethink how Discord fits in. Three people found it not relevant.</li>
+          <li>Invite more participants and churches so next year reaches even further.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">From the #HACK Christmas Iloilo event evaluation (9 responses). Quotes are lightly edited for spelling and shared without names.</p>
   </div>
 </section>
 
