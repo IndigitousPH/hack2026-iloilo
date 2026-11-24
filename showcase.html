@@ -139,6 +139,10 @@ main{padding-block:28px 56px}
 .fun{margin-top:14px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
 .fun b{color:var(--yellow);font-weight:600}
 
+.thanks{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);margin-bottom:22px}
+.photoshow .stage{aspect-ratio:3/2}
+.photoshow + .note{margin-top:12px}
+
 footer{padding-block:28px;border-top:1px solid var(--line)}
 footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
 
@@ -281,6 +285,32 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
   </div>
 </section>
 
+<section class="crowd" id="photos" aria-labelledby="ph-h">
+  <div class="wrap">
+    <p class="eyebrow">Salamat sa tanan!</p>
+    <h2 id="ph-h">The weekend<span class="script">in photos</span></h2>
+    <p class="lead">Thank you to every participant, mentor, volunteer and partner who gave their Friday night and Saturday to share the greatest gift.</p>
+    <img class="thanks" src="showcase/thank-you.webp" width="1050" height="600" alt="Group photo of the #HACK for Christmas Iloilo participants, mentors and volunteers holding Indigitous signs, with the words Thank you!">
+
+    <section class="photoshow" aria-label="Event photos">
+      <div class="stage" id="p-stage">
+        <button class="nav prev" type="button" id="p-prev" aria-label="Previous photo">←</button>
+        <button class="nav next" type="button" id="p-next" aria-label="Next photo">→</button>
+      </div>
+      <div class="progress"><i id="p-progress"></i></div>
+      <div class="bar">
+        <span class="count" id="p-count"></span>
+        <span class="hide-sm">Day 1 and Day 2 at ICMAC</span>
+        <span class="spacer"></span>
+        <button type="button" id="p-play" aria-pressed="false">▶ Autoplay</button>
+        <button type="button" id="p-full">⛶ Full screen</button>
+      </div>
+      <div class="thumbs" id="p-thumbs" aria-label="All photos"></div>
+    </section>
+    <p class="note">More photos in the <a href="https://drive.google.com/drive/folders/1LX5sj7Uuz4Zz8omrbrm5wkeoCX85YlsM" target="_blank" rel="noopener">#HACK photos folder ↗</a></p>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <p>Slides shared by each team from their Saturday presentations. #HACK is an initiative of Indigitous.</p>
@@ -369,14 +399,16 @@ class Slideshow {
     const { stage, thumbs } = this.els;
     stage.querySelectorAll("img").forEach(n => n.remove());
     thumbs.innerHTML = "";
+    const word = team.word || "slide";
     this.imgs = team.slides.map((n, k) => {
+      const src = team.src ? team.src(n) : `${team.dir}/${n}.webp`;
       const img = document.createElement("img");
-      img.alt = `${team.title}, slide ${n} of ${team.slides.length}`;
-      img.dataset.src = `${team.dir}/${n}.webp`;
+      img.alt = `${team.title}, ${word} ${k + 1} of ${team.slides.length}`;
+      img.dataset.src = src;
       stage.insertBefore(img, this.els.prev);
       const b = document.createElement("button");
-      b.type = "button"; b.setAttribute("aria-label", `Go to slide ${n}`);
-      b.innerHTML = `<img src="${team.dir}/${n}.webp" alt="" loading="lazy">`;
+      b.type = "button"; b.setAttribute("aria-label", `Go to ${word} ${k + 1}`);
+      b.innerHTML = `<img src="${team.thumb ? team.thumb(n) : src}" alt="" loading="lazy">`;
       b.addEventListener("click", () => this.go(k));
       thumbs.appendChild(b);
       return img;
@@ -415,6 +447,8 @@ class Slideshow {
     });
     document.addEventListener("keydown", e => {
       if (e.target.closest("input, textarea, video")) return;
+      const r = stage.getBoundingClientRect();
+      if (r.bottom < innerHeight * 0.3 || r.top > innerHeight * 0.7) return;
       if (e.key === "ArrowRight") this.step(1);
       if (e.key === "ArrowLeft") this.step(-1);
     });
@@ -466,6 +500,52 @@ const show = new Slideshow({
 });
 show.wire();
 new Showcase(TEAMS, show).wire();
+
+/* Event photos, served from the shared #HACK Google Drive folder */
+const PHOTOS = [
+  // Day 1
+  "1enz7UrafqWVriCf_HqH76hnUxpbWsFGB", "1ErOpDov2rT8ns-5_RBAJ0WXGuiKQ6ZUn", "11SWoX_pkeiSCE4Jar_dMwQwweoiNOMPm",
+  "18iHR9LTBTFtZFJITITEWFxJacn16MOk_", "1SOtnZheiPMk8oU2b5E04XJ46e_xyKpLY", "1UkLsMslSjBZILAhv3QchTMSGyz-qOe5j",
+  "1pLTzgMWRXU6y0BAVFKStBStw5AqdpqAY", "15rppZ4t7oJCHcnCwAj8a_JmFM6-feeQn", "1eiwNPXhOjybiDPrXFIJhqkeMIrgxbF-A",
+  // Day 2
+  "1kHl4xmN0glogDS-NI-Nytw5c-71vHbb3", "1ZhC3XMDYHndbCHmC1woX9DIKrcJ6fimD", "1qCV8Vucp1eoBCY0piU4QSQ6byQXfKmo1",
+  "1jdyrOJHOop58BwZmy_wx-B9KVhcTPM21", "1QRuqs8L4aOf-qa8ckxV7MSckXyh0DzcT", "1Mra-JuHyGJVYbGr-GbbLPL02edjBCHmn",
+  "1KIn7Ep9lws6o50rXZmGGAQv5W0aGrQU_", "1euVPBiI3Mr5cJfzdANHSNj46bBSWjLKa", "1LTvcyufyGoaawl2VtabVewth600v2Czp",
+  "18qBqM90oDhChUtxt3n_vVrzEywUXECTD", "1GWU2zG7OdajlGtjpxKQNjqrG_xuLHlKK", "1H3ep1aCL6G_1-P0oiaOetsCJI7u6qH69",
+  "1fcC3jre1Af8KKYXxikZBWx7jKUXsT1jO", "1F0LZalpTaRGl00-G52H4IzIalIOXSUwA", "1PC-MBG3n-CXvnF-ndapcge3xK24WQbBx",
+  "1O39ad3gcedlnDtDtZVROM1PnrgnUVbcw", "1VaI8XvoAE3zHo0m7m40GexKYSh9LHonA", "1E4M6nGF7cHwPdoPkJS9x_FRgk_BZWx0y",
+  "1jeYKhP4RbrhespoXP4rkJNwLFmtSc2xI", "1AfaYBEwzmGrAPrnJ8KjHgqYrdsM0NNdz", "1d8o7zIDVMKVPcGTULPGZ_gdRlj1ycjed",
+  "1XEGK3acCLk48ACfTz8UJR8rwxAcOl40-", "14zl02KvYTlta0kovm9K_UsaF65KlMz-1", "10LG3jH1X4lLlUaVEio-wDgrVpnk6ssRm",
+  "1DMFadk2ocNbXtLQexGYVqJiajJDv53bC", "1QpKV02TUOTfvdL0rZJq_uhO24RI4w00q", "15-hhpOyWat0a-LHx2JlkFj0Cf_ggbNQu",
+  "1IlLl5GCbJm6VVdAWJbOxdnnJDQt87028", "1JckMTnCUBXylOfhVMc08UC8Wqcm626kq", "1J2UIVcCQ4MXTGQKjIoOuxPf05XLzr1Im",
+  "1sI-WCYRBZOXZ4RIMKSKr-GeHV07CflkR", "1uMMBxeWPW5OuL6rtH_sLHspp3k8lh_iX", "1560xSlA-pVhkMKMUhw5UlnL6axXEG0ST",
+  "1FilmroFJF-ehXj-q7YdJJICQc9Z6Yy_V", "1yWCSz_iWPW0XYXwXPmIlHjQ5Qi5h-oNw", "17bSV6AVjW9LkZk6-YSUgVcQ4DEfJ28hg",
+  "1Iyk7nj8kE1wpdXtKO-2l3KWxeoeljhZt", "17GKYCH3HHWyPCrBLgF885lHM0C5hxW2G", "1l6cp1dEtIfEhWckYaSf_Ete5JT6Dug4U",
+  "1MqlMGAvocTvA-BXHowFYR4IJlzAfxx31", "113EfWTSt45hs_U33aiGxUgI9xTu1MKrg", "1bnKiCJTisINcVB89xZH9bjbBHQyh8f3D",
+  "1OOL9NPzkr6hsZtD5Z4w_ey4F7Q-fFhgi", "1uP-iKGCVl-6aP1Aq2HKznyTs96GzVSaK", "1K350NYc7CXKHrGAF1pTJKooGX7WPY-62",
+  "1P5cxgAK4d0agBobCEF-4u46YXQJEEkpj", "1dbd-7vehcbtH__WyK50Ns8bavZyM4JJI", "1b9fqzqyYeCLxntm-kKErtyco9J2d99Kl",
+  "1Fav5zp5Dbn_eIen-IXl7TVPAIZMYfr8s", "1x8d5VM7Rv9cTA-3fPQi2D-1g5a0oiknF", "1o2eBiEx92gs9wCc8pvo2gS793oBWpclI",
+  "1hJ2sVdXGb3evXyceX9sCxtOrzAwlcYw2", "1dH7s3ZANIVJXRg4p4mCNmgAYZtYnpfIQ", "1ZcthCkRA1c7TVJQ9zSnZTLv2PAsQbIOn",
+  "1weY9GuJXcWB0F4ekWtSJI4o-ZrX5IGud", "1eIkugfKtOJbTFByYoMU7e8IdRrjBFgEA", "1UKUcWi6bgW9_pi4ULwsMCJTbDOr5ORm2",
+  "1Z9tJMzxHhVKIaypCtT-mO8vghOp7rJmY", "1fM9v7ZWYxlIUdWqYKzj82cUYB8VcfU2Y", "1x0C73vyShUoKFCztYiEaTi8Mfvj55Pn0",
+  "1JKkawFWuGU2gOZuP7KuvW6HpGKQ47uD7", "1RLZftmEkTp98JprxrIScUjMzqXxtSWG0", "1dwOuQw7IQryDWd0J6LHdccRblQX2ztaZ",
+  "1i1Pl3yWn--vDDwHYMhQ1TRUXeJGSPvZr", "1YZaftJTKdz5VIj0nhAE9eVvvVhMdBXl7", "1cbFQ8zjBPQzE4Pin3U0LNdayfvHc1r3A",
+  "11wvck0czainXI64ulyGDOuuGQgjzZe5r", "1VYOy7RiuF8GshA4JYTRfmuSW1G2UBq8E", "1vnqOt5qNbjQpxc31rrXcKuIWt_MZJqAc",
+  "1jMD1QQtVbK8O1JAapRXryd1iNaLtfIjD", "1rUGY-aUrISnuOlJJFtIOmGvcKjwXjCPY", "14C3teKwp8z6ct1rVAA1AqSW7lU4fbijx",
+  "12bouwm013ib9tSS7A3_OOZAH0tso1FoS", "1XdNRIbrqi-uCeJnPPCdHny67Ly0tOTTh",
+];
+const photos = new Slideshow({
+  stage: document.getElementById("p-stage"), thumbs: document.getElementById("p-thumbs"),
+  count: document.getElementById("p-count"), progress: document.getElementById("p-progress"),
+  prev: document.getElementById("p-prev"), next: document.getElementById("p-next"),
+  play: document.getElementById("p-play"), full: document.getElementById("p-full"),
+});
+photos.wire();
+photos.load({
+  title: "#HACK Christmas Iloilo", word: "photo", slides: PHOTOS,
+  src: id => `https://drive.google.com/thumbnail?id=${id}&sz=w1600`,
+  thumb: id => `https://drive.google.com/thumbnail?id=${id}&sz=w240`,
+});
 </script>
 </body>
 </html>
