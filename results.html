@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;600;800&family=Noto+Sans:wght@400;500;700&family=Allison&display=swap">
 <style>
-/* Layout: a showcase of the teams' work. Team switcher, then a slideshow of the team's deck, then a summary and the results they made. Same dark #HACK Christmas look as the hub. */
+/* Layout: results page. A jump bar to each project, one overview card per team (cover, pitch, results), then the event evaluation. Same dark #HACK Christmas look as the hub. */
 :root{
   --ink:#0b0b0b; --panel:#161616; --line:#2a2826; --paper:#f4f2ec; --muted:#a9a59c;
   --yellow:#EFE974; --orange:#EF4E25; --red:#F43F5E;
@@ -42,40 +42,29 @@ p{margin:0;max-width:64ch}
 .mark .hub{display:block;font-family:var(--mono);font-size:.85rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-top:8px}
 .intro{margin-top:16px;color:var(--muted)}
 
-/* team switcher */
-.teams{position:sticky;top:0;z-index:5;background:var(--ink);border-bottom:1px solid var(--line)}
-.teams .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
-.teams .wrap::-webkit-scrollbar{display:none}
-.teams button{flex:0 0 auto;font:600 .85rem var(--mono);background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:14px 12px 12px;cursor:pointer;white-space:nowrap;min-height:44px}
-.teams button small{display:block;font-weight:400;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.teams button:hover{color:var(--paper)}
-.teams button[aria-selected="true"]{color:var(--paper);border-bottom-color:var(--orange)}
-.teams button[aria-selected="true"] small{color:var(--yellow)}
-
-main{padding-block:28px 56px}
-.teamhead{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:10px 20px;margin-bottom:16px}
+/* project jump bar */
+.jump{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ink);border-bottom:1px solid var(--line)}
+.jump .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.jump .wrap::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;font:600 .85rem var(--mono);color:var(--paper);text-decoration:none;padding:12px 12px 10px;border-bottom:2px solid transparent;white-space:nowrap}
+.jump a small{display:block;font-weight:400;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.jump a:hover{border-bottom-color:var(--orange)}
+main{padding-block:32px 56px}
+main .lead{color:var(--muted);margin-bottom:22px}
 .format{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:var(--orange);color:#120806}
 
-/* slideshow */
-.stage{position:relative;background:#000;border:1px solid var(--line);border-radius:10px;overflow:hidden;aspect-ratio:16/9}
-.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .35s ease}
-.stage img.on{opacity:1}
-.nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(11,11,11,.7);color:var(--paper);font:800 1.2rem var(--mono);cursor:pointer;display:grid;place-items:center}
-.nav:hover{background:var(--orange);color:#120806;border-color:var(--orange)}
-.nav.prev{left:10px}.nav.next{right:10px}
-.bar{display:flex;align-items:center;gap:10px;margin-top:10px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
-.bar .count{font-variant-numeric:tabular-nums;min-width:4.5em}
-.bar button{font:600 .8rem var(--mono);background:var(--panel);color:var(--paper);border:1px solid var(--line);border-radius:6px;padding:7px 12px;cursor:pointer;min-height:36px}
-.bar button:hover{border-color:var(--yellow)}
-.bar .spacer{flex:1}
-.progress{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:8px}
-.progress i{display:block;height:100%;width:0;background:var(--orange);transition:width .3s ease}
-.thumbs{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:thin}
-.thumbs button{flex:0 0 112px;aspect-ratio:16/9;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;background:#000;cursor:pointer;opacity:.55}
-.thumbs button:hover{opacity:.85}
-.thumbs button[aria-current="true"]{border-color:var(--orange);opacity:1}
-.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
-.stage:fullscreen{border:0;border-radius:0;aspect-ratio:auto}
+/* project overview cards */
+.projects{display:grid;gap:18px}
+.proj{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:22px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;scroll-margin-top:70px}
+.proj-side{display:grid;gap:16px;align-content:start;min-width:0}
+.cover{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:#000}
+.proj-results h4{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin:0 0 10px}
+.proj-main{min-width:0}
+.proj-main .eyebrow{margin-bottom:4px}
+.proj-main h3{font-size:clamp(1.3rem,1.1rem + .8vw,1.7rem);margin:0 0 10px}
+.proj-main dl{margin:18px 0 0;display:grid;gap:14px}
+.proj-main dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.proj-main dd{margin:2px 0 0;font-size:.97rem}
 
 /* summary + results */
 .detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:28px}
@@ -109,7 +98,8 @@ main{padding-block:28px 56px}
 .nextcta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:var(--orange);color:#120806;border-radius:10px;padding:18px 20px;margin-top:14px}
 .nextcta p{font-weight:500}
 .nextcta .btn{background:#0b0b0b;color:var(--yellow)}
-@media (max-width:720px){.nextgrid{grid-template-columns:1fr}}
+@media (max-width:720px){
+  .proj{grid-template-columns:1fr;padding:16px}.nextgrid{grid-template-columns:1fr}}
 
 /* who came: infographic */
 .crowd{border-top:1px solid var(--line);padding-block:44px 56px}
@@ -179,7 +169,6 @@ main{padding-block:28px 56px}
 .better li::marker{color:var(--yellow)}
 
 .thanks{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);margin-bottom:22px}
-.photoshow .stage{aspect-ratio:3/2}
 .photoshow + .note{margin-top:12px}
 
 footer{padding-block:28px;border-top:1px solid var(--line)}
@@ -194,9 +183,6 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
   .quote.big blockquote{font-size:2.2rem}
   .detail{grid-template-columns:1fr}
   .posts{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .nav{width:38px;height:38px;font-size:1rem}
-  .thumbs button{flex-basis:88px}
-  .bar .hide-sm{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -212,46 +198,16 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
   </div>
 </header>
 
-<nav class="teams" aria-label="Teams">
-  <div class="wrap" role="tablist" id="team-tabs"></div>
+<nav class="jump" aria-label="Projects">
+  <div class="wrap" id="jump"></div>
 </nav>
 
 <main>
-  <div class="wrap" id="team" role="tabpanel" aria-live="polite">
-    <div class="teamhead">
-      <div>
-        <p class="eyebrow" id="t-team"></p>
-        <h2 id="t-title"></h2>
-      </div>
-      <span class="format" id="t-format"></span>
-    </div>
-
-    <section aria-label="Pitch deck">
-      <div class="stage" id="stage">
-        <button class="nav prev" type="button" id="prev" aria-label="Previous slide">←</button>
-        <button class="nav next" type="button" id="next" aria-label="Next slide">→</button>
-      </div>
-      <div class="progress"><i id="progress"></i></div>
-      <div class="bar">
-        <span class="count" id="count"></span>
-        <span class="hide-sm">Use ← → keys or swipe</span>
-        <span class="spacer"></span>
-        <button type="button" id="play" aria-pressed="false">▶ Autoplay</button>
-        <button type="button" id="full">⛶ Full screen</button>
-      </div>
-      <div class="thumbs" id="thumbs" aria-label="All slides"></div>
-    </section>
-
-    <div class="detail">
-      <div class="box">
-        <h3>The pitch</h3>
-        <dl id="t-summary"></dl>
-      </div>
-      <div class="box results">
-        <h3>Results</h3>
-        <div id="t-results"></div>
-      </div>
-    </div>
+  <div class="wrap">
+    <p class="eyebrow">The outputs</p>
+    <h2>Four teams, four ways to reach Nonoy</h2>
+    <p class="lead">Each team picked a format, built it in 24 hours, and pitched it on Saturday afternoon.</p>
+    <div class="projects" id="projects"></div>
   </div>
 </main>
 
@@ -330,7 +286,7 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
 
 <footer>
   <div class="wrap">
-    <p>Slides shared by each team from their Saturday presentations. Evaluation from 9 participant responses. #HACK is an initiative of Indigitous.</p>
+    <p>Project details from each team's Saturday presentation. Evaluation from 9 participant responses. #HACK is an initiative of Indigitous.</p>
   </div>
 </footer>
 
@@ -407,116 +363,30 @@ const TEAMS = [
   },
 ];
 
-/* Slideshow for one team's deck */
-class Slideshow {
-  constructor(els) { this.els = els; this.i = 0; this.timer = null; }
-  load(team) {
-    this.stop();
-    this.team = team; this.i = 0;
-    const { stage, thumbs } = this.els;
-    stage.querySelectorAll("img").forEach(n => n.remove());
-    thumbs.innerHTML = "";
-    const word = team.word || "slide";
-    this.imgs = team.slides.map((n, k) => {
-      const src = team.src ? team.src(n) : `${team.dir}/${n}.webp`;
-      const img = document.createElement("img");
-      img.alt = `${team.title}, ${word} ${k + 1} of ${team.slides.length}`;
-      img.dataset.src = src;
-      stage.insertBefore(img, this.els.prev);
-      const b = document.createElement("button");
-      b.type = "button"; b.setAttribute("aria-label", `Go to ${word} ${k + 1}`);
-      b.innerHTML = `<img src="${team.thumb ? team.thumb(n) : src}" alt="" loading="lazy">`;
-      b.addEventListener("click", () => this.go(k));
-      thumbs.appendChild(b);
-      return img;
-    });
-    this.go(0);
-  }
-  ensure(k) { const img = this.imgs[k]; if (img && !img.src) img.src = img.dataset.src; }
-  go(k) {
-    const n = this.imgs.length;
-    this.i = (k + n) % n;
-    this.imgs.forEach((img, j) => img.classList.toggle("on", j === this.i));
-    [this.i, this.i + 1, this.i - 1].forEach(j => this.ensure((j + n) % n));
-    const tb = [...this.els.thumbs.children];
-    tb.forEach((b, j) => b.setAttribute("aria-current", String(j === this.i)));
-    tb[this.i].scrollIntoView({ block: "nearest", inline: "nearest" });
-    this.els.count.textContent = `${this.i + 1} / ${n}`;
-    this.els.progress.style.width = `${((this.i + 1) / n) * 100}%`;
-  }
-  step(d) { this.go(this.i + d); }
-  play() {
-    this.timer = setInterval(() => this.step(1), 5000);
-    this.els.play.setAttribute("aria-pressed", "true"); this.els.play.textContent = "❚❚ Pause";
-  }
-  stop() {
-    clearInterval(this.timer); this.timer = null;
-    this.els.play.setAttribute("aria-pressed", "false"); this.els.play.textContent = "▶ Autoplay";
-  }
-  wire() {
-    const { stage, prev, next, play, full } = this.els;
-    prev.addEventListener("click", () => this.step(-1));
-    next.addEventListener("click", () => this.step(1));
-    play.addEventListener("click", () => (this.timer ? this.stop() : this.play()));
-    full.addEventListener("click", () => {
-      if (document.fullscreenElement) document.exitFullscreen();
-      else if (stage.requestFullscreen) stage.requestFullscreen();
-    });
-    document.addEventListener("keydown", e => {
-      if (e.target.closest("input, textarea, video")) return;
-      const r = stage.getBoundingClientRect();
-      if (r.bottom < innerHeight * 0.3 || r.top > innerHeight * 0.7) return;
-      if (e.key === "ArrowRight") this.step(1);
-      if (e.key === "ArrowLeft") this.step(-1);
-    });
-    let x0 = null;
-    stage.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
-    stage.addEventListener("touchend", e => {
-      if (x0 === null) return;
-      const dx = e.changedTouches[0].clientX - x0; x0 = null;
-      if (Math.abs(dx) > 40) this.step(dx < 0 ? 1 : -1);
-    });
-  }
-}
+/* Project overviews: one card per team, built from TEAMS */
+const projects = document.getElementById("projects");
+const jump = document.getElementById("jump");
+TEAMS.forEach(t => {
+  const a = document.createElement("a");
+  a.href = "#" + t.id;
+  a.innerHTML = `${t.title}<small>${t.team}</small>`;
+  jump.appendChild(a);
 
-/* Team switcher: picks a team, fills in its deck, pitch and results */
-class Showcase {
-  constructor(teams, show) { this.teams = teams; this.show = show; this.tabs = document.getElementById("team-tabs"); }
-  render(team) {
-    document.getElementById("t-team").textContent = team.team;
-    document.getElementById("t-title").textContent = team.title;
-    document.getElementById("t-format").textContent = team.format;
-    document.getElementById("t-summary").innerHTML = team.summary.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
-    document.getElementById("t-results").innerHTML = team.results;
-    [...this.tabs.children].forEach(b => b.setAttribute("aria-selected", String(b.dataset.id === team.id)));
-    this.show.load(team);
-  }
-  select(id, push) {
-    const team = this.teams.find(t => t.id === id) || this.teams[0];
-    this.render(team);
-    if (push) try { history.replaceState(null, "", "#" + team.id); } catch (e) {}
-  }
-  wire() {
-    this.teams.forEach(t => {
-      const b = document.createElement("button");
-      b.type = "button"; b.setAttribute("role", "tab"); b.dataset.id = t.id;
-      b.innerHTML = `${t.title}<small>${t.team}</small>`;
-      b.addEventListener("click", () => { this.select(t.id, true); window.scrollTo({ top: document.querySelector(".teams").offsetTop }); });
-      this.tabs.appendChild(b);
-    });
-    window.addEventListener("hashchange", () => this.select(location.hash.slice(1)));
-    this.select(location.hash.slice(1));
-  }
-}
-
-const show = new Slideshow({
-  stage: document.getElementById("stage"), thumbs: document.getElementById("thumbs"),
-  count: document.getElementById("count"), progress: document.getElementById("progress"),
-  prev: document.getElementById("prev"), next: document.getElementById("next"),
-  play: document.getElementById("play"), full: document.getElementById("full"),
+  const el = document.createElement("article");
+  el.className = "proj"; el.id = t.id;
+  el.innerHTML = `
+    <div class="proj-side">
+      <img class="cover" src="${t.dir}/1.webp" alt="Title slide of ${t.title} by ${t.team}" loading="lazy">
+      <div class="proj-results"><h4>Results</h4>${t.results}</div>
+    </div>
+    <div class="proj-main">
+      <p class="eyebrow">${t.team}</p>
+      <h3>${t.title}</h3>
+      <span class="format">${t.format}</span>
+      <dl>${t.summary.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
+    </div>`;
+  projects.appendChild(el);
 });
-show.wire();
-new Showcase(TEAMS, show).wire();
 </script>
 </body>
 </html>
