@@ -152,6 +152,17 @@ main{padding-block:28px 56px}
 .fun{margin-top:14px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
 .fun b{color:var(--yellow);font-weight:600}
 
+/* sponsors */
+.sponsor-logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.sponsor{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;min-width:0}
+.sponsor img{display:block;width:100%;max-width:220px;height:auto;aspect-ratio:1;margin:0 auto 12px;border-radius:8px}
+.sponsor figcaption{font-family:var(--mono);font-weight:600;font-size:.9rem}
+.sponsor figcaption small{display:block;font-weight:400;font-size:.75rem;color:var(--muted);margin-top:2px}
+.sponsor-label{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin:26px 0 12px}
+.sponsor-names{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.sponsor-names li{font-family:var(--mono);font-weight:600;padding:8px 16px;border:1px solid var(--orange);border-radius:999px}
+@media (max-width:620px){.sponsor-logos{grid-template-columns:1fr 1fr}.sponsor-logos .sponsor:last-child{grid-column:1/-1}}
+
 /* evaluation */
 .subhead{font-family:var(--mono);font-weight:800;font-size:1.25rem;margin:34px 0 14px}
 .takeaways{list-style:none;counter-reset:t;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:12px}
@@ -428,6 +439,23 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
       </div>
     </div>
     <p class="note">From the #HACK Christmas Iloilo event evaluation (9 responses). Quotes are lightly edited for spelling and shared without names.</p>
+  </div>
+</section>
+
+<section class="crowd" id="sponsors" aria-labelledby="sp-h">
+  <div class="wrap">
+    <p class="eyebrow">Our sponsors</p>
+    <h2 id="sp-h">Made possible by<span class="script">generous hearts</span></h2>
+    <p class="lead">Thank you to the people and businesses who gave so #HACK Christmas Iloilo could happen.</p>
+    <div class="sponsor-logos">
+      <figure class="sponsor"><img src="showcase/sponsors/love-iya.webp" width="400" height="400" alt="Love, Iya logo" loading="lazy"><figcaption>Love, Iya Comfort Food</figcaption></figure>
+      <figure class="sponsor"><img src="showcase/sponsors/pawfest.webp" width="400" height="400" alt="PAWFest logo" loading="lazy"><figcaption>PAWFest</figcaption></figure>
+      <figure class="sponsor"><img src="showcase/sponsors/mayad.webp" width="400" height="400" alt="Mayad Post Production House logo" loading="lazy"><figcaption>Mayad Post Production House Inc.<small>for the documentation</small></figcaption></figure>
+    </div>
+    <p class="sponsor-label">And our individual sponsors</p>
+    <ul class="sponsor-names">
+      <li>John</li><li>Starlyn</li><li>Lomarie</li><li>Brennan</li><li>Ike</li><li>Shelly</li><li>JJ</li><li>Angela</li>
+    </ul>
   </div>
 </section>
 
