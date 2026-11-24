@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>#HACK Christmas Iloilo Results</title>
-<meta name="description" content="The outputs of #HACK Christmas Iloilo: what each team made for Nonoy, and what participants said in the event evaluation.">
+<meta name="description" content="The prototypes from #HACK Christmas Iloilo: what each team made for Nonoy, participants' key takeaways, and photos from the weekend.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;600;800&family=Noto+Sans:wght@400;500;700&family=Allison&display=swap">
@@ -66,6 +66,38 @@ main .lead{color:var(--muted);margin-bottom:22px}
 .proj-main dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
 .proj-main dd{margin:2px 0 0;font-size:.97rem}
 
+/* slideshow */
+.stage{position:relative;background:#000;border:1px solid var(--line);border-radius:10px;overflow:hidden;aspect-ratio:16/9}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .35s ease}
+.stage img.on{opacity:1}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(11,11,11,.7);color:var(--paper);font:800 1.2rem var(--mono);cursor:pointer;display:grid;place-items:center}
+.nav:hover{background:var(--orange);color:#120806;border-color:var(--orange)}
+.nav.prev{left:10px}.nav.next{right:10px}
+.bar{display:flex;align-items:center;gap:10px;margin-top:10px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.bar .count{font-variant-numeric:tabular-nums;min-width:4.5em}
+.bar button{font:600 .8rem var(--mono);background:var(--panel);color:var(--paper);border:1px solid var(--line);border-radius:6px;padding:7px 12px;cursor:pointer;min-height:36px}
+.bar button:hover{border-color:var(--yellow)}
+.bar .spacer{flex:1}
+.progress{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:8px}
+.progress i{display:block;height:100%;width:0;background:var(--orange);transition:width .3s ease}
+.thumbs{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:thin}
+.thumbs button{flex:0 0 112px;aspect-ratio:16/9;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;background:#000;cursor:pointer;opacity:.55}
+.thumbs button:hover{opacity:.85}
+.thumbs button[aria-current="true"]{border-color:var(--orange);opacity:1}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.stage:fullscreen{border:0;border-radius:0;aspect-ratio:auto}
+
+.photoshow .stage{aspect-ratio:3/2}
+.photoshow + .note{margin-top:12px}
+
+/* prototype note */
+.proto{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;border:1px dashed var(--yellow);border-radius:12px;padding:18px 20px;margin-bottom:22px;background:rgba(239,233,116,.05)}
+.proto-tag{font-family:var(--mono);font-weight:800;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;background:var(--yellow);color:#0b0b0b;padding:4px 10px;border-radius:4px;white-space:nowrap}
+.proto h3{margin:0 0 4px}
+.proto p{color:var(--muted)}
+.format.ghost{background:transparent;border:1px dashed var(--yellow);color:var(--yellow)}
+@media (max-width:520px){.proto{grid-template-columns:1fr}.proto-tag{justify-self:start}}
+
 /* summary + results */
 .detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:28px}
 .box{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
@@ -99,6 +131,9 @@ main .lead{color:var(--muted);margin-bottom:22px}
 .nextcta p{font-weight:500}
 .nextcta .btn{background:#0b0b0b;color:var(--yellow)}
 @media (max-width:720px){
+  .nav{width:38px;height:38px;font-size:1rem}
+  .thumbs button{flex-basis:88px}
+  .bar .hide-sm{display:none}
   .proj{grid-template-columns:1fr;padding:16px}.nextgrid{grid-template-columns:1fr}}
 
 /* who came: infographic */
@@ -194,7 +229,7 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
     <a class="back" href="participants.html">← Participant hub</a>
     <div class="brandline">INDIGITOUS <span>ILOILO</span></div>
     <h1 class="mark"><span class="hack">#HACK</span><span class="xmas">Christmas</span><span class="hub">Outputs &amp; evaluation</span></h1>
-    <p class="intro">In 24 hours, four teams built something to help Nonoy, 19, from Jaro, find the true meaning of Christmas. Here's what they made and presented on Saturday, Nov 21, followed by what participants said in the event evaluation. <a href="#feedback">Jump to the evaluation ↓</a></p>
+    <p class="intro">In 24 hours, four teams built something to help Nonoy, 19, from Jaro, find the true meaning of Christmas. Here's what they made and presented on Saturday, Nov 21,, followed by participants' key takeaways and photos from the weekend. <a href="#feedback">Jump to the takeaways ↓</a></p>
   </div>
 </header>
 
@@ -207,24 +242,22 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
     <p class="eyebrow">The outputs</p>
     <h2>Four teams, four ways to reach Nonoy</h2>
     <p class="lead">Each team picked a format, built it in 24 hours, and pitched it on Saturday afternoon.</p>
+    <div class="proto">
+      <span class="proto-tag">Prototypes</span>
+      <div>
+        <h3>A picture of what's possible</h3>
+        <p>Everything here was made in just 24 hours, so these are first drafts, not finished products. They show where each idea could go. Teams are encouraged to keep building on them: test with real people like Nonoy, refine the content, and launch.</p>
+      </div>
+    </div>
     <div class="projects" id="projects"></div>
   </div>
 </main>
 
 <section class="crowd" id="feedback" aria-labelledby="fb-h">
   <div class="wrap">
-    <p class="eyebrow">In their own words</p>
-    <h2 id="fb-h">What participants said<span class="script">after</span></h2>
-    <p class="lead">Nine participants filled in the event evaluation right after the closing on Saturday. Here's what stayed with them.</p>
-
-    <div class="bignums">
-      <div class="bignum"><b>4.7<small>/5</small></b><span>satisfied with the event</span></div>
-      <div class="bignum"><b>4.8<small>/5</small></b><span>relevant and helpful for their work</span></div>
-      <div class="bignum"><b>9<small>/9</small></b><span>rated the event 4 or 5</span></div>
-      <div class="bignum"><b>7<small>/9</small></b><span>want to volunteer for #HACK or Indigitous</span></div>
-    </div>
-
-    <h3 class="subhead">Key takeaways</h3>
+    <p class="eyebrow">From the event evaluation</p>
+    <h2 id="fb-h">Key takeaways<span class="script">from participants</span></h2>
+    <p class="lead">What stayed with participants, drawn from the evaluation they filled in right after the closing on Saturday.</p>
     <ol class="takeaways">
       <li><b>Creativity can carry the gospel.</b> Reels, posts, songs and games are real ways to share Jesus, and God-given talents are meant for it.</li>
       <li><b>Christmas is an open door.</b> People are more willing to listen this season, so it's the time to share.</li>
@@ -232,57 +265,30 @@ footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
       <li><b>Better together.</b> Meeting other Christian creatives and building with them was part of the blessing.</li>
       <li><b>Learning by doing.</b> Mentoring plus a real challenge turned ideas into content in 24 hours.</li>
     </ol>
-
-    <div class="quotes">
-      <figure class="quote big"><blockquote>Thaaat we can make contents for Jesus!!</blockquote><figcaption>Participant</figcaption></figure>
-      <figure class="quote"><blockquote>It's true that during Christmas season, people are very open and willing to listen, so let's grab the opportunity to share Jesus.</blockquote><figcaption>Participant</figcaption></figure>
-      <figure class="quote"><blockquote>When we are expected to share the Gospel, it should be suitable for anyone to approach the unreached. It's also a blessing to use our God-given talents to spread the Good News.</blockquote><figcaption>Participant</figcaption></figure>
-      <figure class="quote"><blockquote>To share the gospel even through the digital media and to sow seeds of faith as we go along and meet new people.</blockquote><figcaption>Participant</figcaption></figure>
-      <figure class="quote"><blockquote>To be connected with other Christians and collaborate in making content to share the gospel in social media.</blockquote><figcaption>Participant</figcaption></figure>
-      <figure class="quote"><blockquote>I was trained and mentored in doing evangelism via online platforms, spreading the word of God in a faster way.</blockquote><figcaption>Participant</figcaption></figure>
-      <figure class="quote"><blockquote>It was a great experience combining theoretical and practical practices and expertise.</blockquote><figcaption>Participant</figcaption></figure>
-      <figure class="quote"><blockquote>Thank you for holding this kind of event. It has reminded us again to use social media in sharing Jesus.</blockquote><figcaption>Participant</figcaption></figure>
-    </div>
-
-    <div class="ig">
-      <div class="box">
-        <h3>Most relevant sessions <small>of 9 answers</small></h3>
-        <ul class="sessions">
-          <li><span>Persona (Nonoy)</span><span class="sbar"><i class="vr" style="flex:7"></i><i class="r" style="flex:2"></i></span><b>7</b></li>
-          <li><span>Vision casting</span><span class="sbar"><i class="vr" style="flex:6"></i><i class="r" style="flex:3"></i></span><b>6</b></li>
-          <li><span>Mentoring</span><span class="sbar"><i class="vr" style="flex:6"></i><i class="r" style="flex:3"></i></span><b>6</b></li>
-          <li><span>Commissioning</span><span class="sbar"><i class="vr" style="flex:6"></i><i class="r" style="flex:3"></i></span><b>6</b></li>
-          <li><span>#HACK for Christmas group</span><span class="sbar"><i class="vr" style="flex:5"></i><i class="r" style="flex:4"></i></span><b>5</b></li>
-          <li><span>Discord</span><span class="sbar"><i class="vr" style="flex:2"></i><i class="r" style="flex:3"></i><i class="nr" style="flex:3"></i><i class="na" style="flex:1"></i></span><b>2</b></li>
-        </ul>
-        <div class="key"><span><i style="background:var(--orange)"></i>Very relevant (count)</span><span><i style="background:#5a4a40"></i>Relevant</span><span><i style="background:#3a3733"></i>Not relevant</span><span><i style="background:transparent;border:1px solid #3a3733"></i>Didn't attend</span></div>
-      </div>
-      <div class="box">
-        <h3>Logistics <small>average out of 5</small></h3>
-        <ul class="logi">
-          <li><span>Accommodation</span><b>4.9</b></li>
-          <li><span>Venue</span><b>4.9</b></li>
-          <li><span>Overall experience</span><b>4.7</b></li>
-          <li><span>Closing ceremony</span><b>4.7</b></li>
-          <li><span>Welcome kit</span><b>4.6</b></li>
-          <li><span>Communication</span><b>4.6</b></li>
-          <li><span>Activities</span><b>4.6</b></li>
-          <li><span>Program</span><b>4.4</b></li>
-        </ul>
-      </div>
-      <div class="box wide">
-        <h3>What we'll do better next time</h3>
-        <ul class="better">
-          <li>Share more about the challenge ahead of time. One team said the task surprised them, though it pushed them to think deeply about their content.</li>
-          <li>Tighten the program flow, the lowest-rated part of the logistics.</li>
-          <li>Rethink how Discord fits in. Three people found it not relevant.</li>
-          <li>Invite more participants and churches so next year reaches even further.</li>
-        </ul>
-      </div>
-    </div>
-    <p class="note">From the #HACK Christmas Iloilo event evaluation (9 responses). Quotes are lightly edited for spelling and shared without names.</p>
   </div>
 </section>
+
+<section class="crowd" id="photos" aria-labelledby="ph-h">
+  <div class="wrap">
+    <p class="eyebrow">Salamat sa tanan!</p>
+    <h2 id="ph-h">The weekend<span class="script">in photos</span></h2>
+    <p class="lead">Thank you to every participant, mentor, volunteer and partner who gave their Friday night and Saturday to share the greatest gift.</p>
+
+    <section class="photoshow" aria-label="Event photos">
+      <div class="stage" id="p-stage">
+        <button class="nav prev" type="button" id="p-prev" aria-label="Previous photo">←</button>
+        <button class="nav next" type="button" id="p-next" aria-label="Next photo">→</button>
+      </div>
+      <div class="progress"><i id="p-progress"></i></div>
+      <div class="bar">
+        <span class="count" id="p-count"></span>
+        <span class="hide-sm">Day 1 and Day 2 at ICMAC</span>
+        <span class="spacer"></span>
+        <button type="button" id="p-play" aria-pressed="false">▶ Autoplay</button>
+        <button type="button" id="p-full">⛶ Full screen</button>
+      </div>
+      <div class="thumbs" id="p-thumbs" aria-label="All photos"></div>
+    </section>
 
 <footer>
   <div class="wrap">
@@ -382,10 +388,128 @@ TEAMS.forEach(t => {
     <div class="proj-main">
       <p class="eyebrow">${t.team}</p>
       <h3>${t.title}</h3>
-      <span class="format">${t.format}</span>
+      <span class="format">${t.format}</span> <span class="format ghost">Prototype</span>
       <dl>${t.summary.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
     </div>`;
   projects.appendChild(el);
+});
+
+/* Slideshow for the event photos */
+class Slideshow {
+  constructor(els) { this.els = els; this.i = 0; this.timer = null; }
+  load(team) {
+    this.stop();
+    this.team = team; this.i = 0;
+    const { stage, thumbs } = this.els;
+    stage.querySelectorAll("img").forEach(n => n.remove());
+    thumbs.innerHTML = "";
+    const word = team.word || "slide";
+    this.imgs = team.slides.map((n, k) => {
+      const src = team.src ? team.src(n) : `${team.dir}/${n}.webp`;
+      const img = document.createElement("img");
+      img.alt = `${team.title}, ${word} ${k + 1} of ${team.slides.length}`;
+      img.dataset.src = src;
+      stage.insertBefore(img, this.els.prev);
+      const b = document.createElement("button");
+      b.type = "button"; b.setAttribute("aria-label", `Go to ${word} ${k + 1}`);
+      b.innerHTML = `<img src="${team.thumb ? team.thumb(n) : src}" alt="" loading="lazy">`;
+      b.addEventListener("click", () => this.go(k));
+      thumbs.appendChild(b);
+      return img;
+    });
+    this.go(0);
+  }
+  ensure(k) { const img = this.imgs[k]; if (img && !img.src) img.src = img.dataset.src; }
+  go(k) {
+    const n = this.imgs.length;
+    this.i = (k + n) % n;
+    this.imgs.forEach((img, j) => img.classList.toggle("on", j === this.i));
+    [this.i, this.i + 1, this.i - 1].forEach(j => this.ensure((j + n) % n));
+    const tb = [...this.els.thumbs.children];
+    tb.forEach((b, j) => b.setAttribute("aria-current", String(j === this.i)));
+    tb[this.i].scrollIntoView({ block: "nearest", inline: "nearest" });
+    this.els.count.textContent = `${this.i + 1} / ${n}`;
+    this.els.progress.style.width = `${((this.i + 1) / n) * 100}%`;
+  }
+  step(d) { this.go(this.i + d); }
+  play() {
+    this.timer = setInterval(() => this.step(1), 5000);
+    this.els.play.setAttribute("aria-pressed", "true"); this.els.play.textContent = "❚❚ Pause";
+  }
+  stop() {
+    clearInterval(this.timer); this.timer = null;
+    this.els.play.setAttribute("aria-pressed", "false"); this.els.play.textContent = "▶ Autoplay";
+  }
+  wire() {
+    const { stage, prev, next, play, full } = this.els;
+    prev.addEventListener("click", () => this.step(-1));
+    next.addEventListener("click", () => this.step(1));
+    play.addEventListener("click", () => (this.timer ? this.stop() : this.play()));
+    full.addEventListener("click", () => {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (stage.requestFullscreen) stage.requestFullscreen();
+    });
+    document.addEventListener("keydown", e => {
+      if (e.target.closest("input, textarea, video")) return;
+      const r = stage.getBoundingClientRect();
+      if (r.bottom < innerHeight * 0.3 || r.top > innerHeight * 0.7) return;
+      if (e.key === "ArrowRight") this.step(1);
+      if (e.key === "ArrowLeft") this.step(-1);
+    });
+    let x0 = null;
+    stage.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener("touchend", e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) this.step(dx < 0 ? 1 : -1);
+    });
+  }
+}
+
+/* Event photos, served from the shared #HACK Google Drive folder */
+const PHOTOS = [
+  // Day 1
+  "1enz7UrafqWVriCf_HqH76hnUxpbWsFGB", "1ErOpDov2rT8ns-5_RBAJ0WXGuiKQ6ZUn", "11SWoX_pkeiSCE4Jar_dMwQwweoiNOMPm",
+  "18iHR9LTBTFtZFJITITEWFxJacn16MOk_", "1SOtnZheiPMk8oU2b5E04XJ46e_xyKpLY", "1UkLsMslSjBZILAhv3QchTMSGyz-qOe5j",
+  "1pLTzgMWRXU6y0BAVFKStBStw5AqdpqAY", "15rppZ4t7oJCHcnCwAj8a_JmFM6-feeQn", "1eiwNPXhOjybiDPrXFIJhqkeMIrgxbF-A",
+  // Day 2
+  "1kHl4xmN0glogDS-NI-Nytw5c-71vHbb3", "1ZhC3XMDYHndbCHmC1woX9DIKrcJ6fimD", "1qCV8Vucp1eoBCY0piU4QSQ6byQXfKmo1",
+  "1jdyrOJHOop58BwZmy_wx-B9KVhcTPM21", "1QRuqs8L4aOf-qa8ckxV7MSckXyh0DzcT", "1Mra-JuHyGJVYbGr-GbbLPL02edjBCHmn",
+  "1KIn7Ep9lws6o50rXZmGGAQv5W0aGrQU_", "1euVPBiI3Mr5cJfzdANHSNj46bBSWjLKa", "1LTvcyufyGoaawl2VtabVewth600v2Czp",
+  "18qBqM90oDhChUtxt3n_vVrzEywUXECTD", "1GWU2zG7OdajlGtjpxKQNjqrG_xuLHlKK", "1H3ep1aCL6G_1-P0oiaOetsCJI7u6qH69",
+  "1fcC3jre1Af8KKYXxikZBWx7jKUXsT1jO", "1F0LZalpTaRGl00-G52H4IzIalIOXSUwA", "1PC-MBG3n-CXvnF-ndapcge3xK24WQbBx",
+  "1O39ad3gcedlnDtDtZVROM1PnrgnUVbcw", "1VaI8XvoAE3zHo0m7m40GexKYSh9LHonA", "1E4M6nGF7cHwPdoPkJS9x_FRgk_BZWx0y",
+  "1jeYKhP4RbrhespoXP4rkJNwLFmtSc2xI", "1AfaYBEwzmGrAPrnJ8KjHgqYrdsM0NNdz", "1d8o7zIDVMKVPcGTULPGZ_gdRlj1ycjed",
+  "1XEGK3acCLk48ACfTz8UJR8rwxAcOl40-", "14zl02KvYTlta0kovm9K_UsaF65KlMz-1", "10LG3jH1X4lLlUaVEio-wDgrVpnk6ssRm",
+  "1DMFadk2ocNbXtLQexGYVqJiajJDv53bC", "1QpKV02TUOTfvdL0rZJq_uhO24RI4w00q", "15-hhpOyWat0a-LHx2JlkFj0Cf_ggbNQu",
+  "1IlLl5GCbJm6VVdAWJbOxdnnJDQt87028", "1JckMTnCUBXylOfhVMc08UC8Wqcm626kq", "1J2UIVcCQ4MXTGQKjIoOuxPf05XLzr1Im",
+  "1sI-WCYRBZOXZ4RIMKSKr-GeHV07CflkR", "1uMMBxeWPW5OuL6rtH_sLHspp3k8lh_iX", "1560xSlA-pVhkMKMUhw5UlnL6axXEG0ST",
+  "1FilmroFJF-ehXj-q7YdJJICQc9Z6Yy_V", "1yWCSz_iWPW0XYXwXPmIlHjQ5Qi5h-oNw", "17bSV6AVjW9LkZk6-YSUgVcQ4DEfJ28hg",
+  "1Iyk7nj8kE1wpdXtKO-2l3KWxeoeljhZt", "17GKYCH3HHWyPCrBLgF885lHM0C5hxW2G", "1l6cp1dEtIfEhWckYaSf_Ete5JT6Dug4U",
+  "1MqlMGAvocTvA-BXHowFYR4IJlzAfxx31", "113EfWTSt45hs_U33aiGxUgI9xTu1MKrg", "1bnKiCJTisINcVB89xZH9bjbBHQyh8f3D",
+  "1OOL9NPzkr6hsZtD5Z4w_ey4F7Q-fFhgi", "1uP-iKGCVl-6aP1Aq2HKznyTs96GzVSaK", "1K350NYc7CXKHrGAF1pTJKooGX7WPY-62",
+  "1P5cxgAK4d0agBobCEF-4u46YXQJEEkpj", "1dbd-7vehcbtH__WyK50Ns8bavZyM4JJI", "1b9fqzqyYeCLxntm-kKErtyco9J2d99Kl",
+  "1Fav5zp5Dbn_eIen-IXl7TVPAIZMYfr8s", "1x8d5VM7Rv9cTA-3fPQi2D-1g5a0oiknF", "1o2eBiEx92gs9wCc8pvo2gS793oBWpclI",
+  "1hJ2sVdXGb3evXyceX9sCxtOrzAwlcYw2", "1dH7s3ZANIVJXRg4p4mCNmgAYZtYnpfIQ", "1ZcthCkRA1c7TVJQ9zSnZTLv2PAsQbIOn",
+  "1weY9GuJXcWB0F4ekWtSJI4o-ZrX5IGud", "1eIkugfKtOJbTFByYoMU7e8IdRrjBFgEA", "1UKUcWi6bgW9_pi4ULwsMCJTbDOr5ORm2",
+  "1Z9tJMzxHhVKIaypCtT-mO8vghOp7rJmY", "1fM9v7ZWYxlIUdWqYKzj82cUYB8VcfU2Y", "1x0C73vyShUoKFCztYiEaTi8Mfvj55Pn0",
+  "1JKkawFWuGU2gOZuP7KuvW6HpGKQ47uD7", "1RLZftmEkTp98JprxrIScUjMzqXxtSWG0", "1dwOuQw7IQryDWd0J6LHdccRblQX2ztaZ",
+  "1i1Pl3yWn--vDDwHYMhQ1TRUXeJGSPvZr", "1YZaftJTKdz5VIj0nhAE9eVvvVhMdBXl7", "1cbFQ8zjBPQzE4Pin3U0LNdayfvHc1r3A",
+  "11wvck0czainXI64ulyGDOuuGQgjzZe5r", "1VYOy7RiuF8GshA4JYTRfmuSW1G2UBq8E", "1vnqOt5qNbjQpxc31rrXcKuIWt_MZJqAc",
+  "1jMD1QQtVbK8O1JAapRXryd1iNaLtfIjD", "1rUGY-aUrISnuOlJJFtIOmGvcKjwXjCPY", "14C3teKwp8z6ct1rVAA1AqSW7lU4fbijx",
+  "12bouwm013ib9tSS7A3_OOZAH0tso1FoS", "1XdNRIbrqi-uCeJnPPCdHny67Ly0tOTTh",
+];
+const photos = new Slideshow({
+  stage: document.getElementById("p-stage"), thumbs: document.getElementById("p-thumbs"),
+  count: document.getElementById("p-count"), progress: document.getElementById("p-progress"),
+  prev: document.getElementById("p-prev"), next: document.getElementById("p-next"),
+  play: document.getElementById("p-play"), full: document.getElementById("p-full"),
+});
+photos.wire();
+photos.load({
+  title: "#HACK Christmas Iloilo", word: "photo", slides: PHOTOS,
+  src: id => `https://drive.google.com/thumbnail?id=${id}&sz=w1600`,
+  thumb: id => `https://drive.google.com/thumbnail?id=${id}&sz=w240`,
 });
 </script>
 </body>
