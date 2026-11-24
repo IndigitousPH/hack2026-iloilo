@@ -407,8 +407,8 @@ footer p{font-family:var(--mono);font-size:var(--step--1);color:var(--muted)}
       <h2 id="dt-title">What you need to know</h2>
       <div class="details">
         <div class="detail">
-          <div class="big"><em>₱200</em> to join</div>
-          <p>Covers your meals for the whole sprint and a #HACK tote bag to take home. Pay via GCash or online payment.</p>
+          <div class="big"><em>4</em> prototypes</div>
+          <p>Built in 24 hours for Nonoy, from a social media campaign to a mobile game. <a href="results.html">See the results →</a></p>
         </div>
         <div class="detail">
           <div class="big">ICMAC, Smallville</div>
@@ -454,7 +454,6 @@ footer p{font-family:var(--mono);font-size:var(--step--1);color:var(--muted)}
         <details><summary>Do I need a team?</summary><p>No. Come with friends or come alone. We'll help you find a team at kickoff.</p></details>
         <details><summary>What should I bring?</summary><p>Your laptop or phone, chargers, earphones, any gear you create with (camera, instrument, drawing tablet), and a Discord account so your team can keep working online through the night.</p></details>
         <details><summary>Do we stay at the venue overnight?</summary><p>No. The sprint runs from 5PM Friday to 5PM Saturday, but there's no overnight stay at the venue. After Friday's session, teams keep creating online on our Discord server, which stays live the whole night. Join the Discord here: <a href="http://ndgt.us/discord" target="_blank" rel="noopener">ndgt.us/discord</a></p></details>
-        <details><summary>How do I pay the ₱200?</summary><p>Pay via GCash or online payment. Register by November 16, 2026.</p></details>
         <details><summary>Who do I contact?</summary><p>Message or call Jonah at <a href="tel:+639162451641">0916 245 1641</a>.</p></details>
       </div>
     </div>
@@ -488,9 +487,7 @@ class EventConfig {
   constructor() {
     this.kickoff = new Date("2026-11-20T17:00:00+08:00");
     this.wrapUp  = new Date("2026-11-21T17:00:00+08:00");
-    this.registrationUrl = "https://forms.gle/2fRpkGoPpkxBu9gw7";
   }
-  hasRegistrationLink() { return this.registrationUrl.trim().length > 0; }
 }
 
 /* ---------- Countdown to kickoff ---------- */
