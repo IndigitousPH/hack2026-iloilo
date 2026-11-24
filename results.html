@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>#HACK Christmas Iloilo Results</title>
+<meta name="description" content="The outputs of #HACK Christmas Iloilo: what each team made for Nonoy, and what participants said in the event evaluation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;600;800&family=Noto+Sans:wght@400;500;700&family=Allison&display=swap">
+<style>
+/* Layout: a showcase of the teams' work. Team switcher, then a slideshow of the team's deck, then a summary and the results they made. Same dark #HACK Christmas look as the hub. */
+:root{
+  --ink:#0b0b0b; --panel:#161616; --line:#2a2826; --paper:#f4f2ec; --muted:#a9a59c;
+  --yellow:#EFE974; --orange:#EF4E25; --red:#F43F5E;
+  --mono:"Noto Sans Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:"Noto Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --script:"Allison","Brush Script MT",cursive;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:1rem;line-height:1.6}
+a{color:var(--yellow);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h2{font-family:var(--mono);font-weight:800;font-size:clamp(1.5rem,1.2rem + 1.4vw,2.2rem);line-height:1.1;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+h3{font-family:var(--mono);font-weight:600;font-size:1.05rem;margin:0 0 6px;line-height:1.25}
+p{margin:0;max-width:64ch}
+.muted{color:var(--muted)}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin:0 0 10px}
+.eyebrow::before{content:"> ";color:var(--orange)}
+
+/* header */
+.top{padding-block:24px 22px;border-bottom:1px solid var(--line)}
+.back{font-family:var(--mono);font-size:.85rem;text-decoration:none;color:var(--muted)}
+.back:hover{color:var(--paper)}
+.brandline{font-family:var(--mono);font-size:.8rem;letter-spacing:.2em;color:var(--orange);margin:18px 0 12px}
+.brandline span{color:var(--paper)}
+.mark{margin:0;line-height:.9}
+.mark .hack{font-family:var(--mono);font-weight:800;font-size:clamp(2.4rem,1.9rem + 3.6vw,4.2rem);color:var(--orange);letter-spacing:-.04em}
+.mark .xmas{display:block;font-family:var(--script);font-weight:400;font-size:clamp(2.2rem,1.7rem + 3.6vw,3.8rem);margin:-.35em 0 0 .6em;transform:rotate(-4deg);line-height:1}
+.mark .hub{display:block;font-family:var(--mono);font-size:.85rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-top:8px}
+.intro{margin-top:16px;color:var(--muted)}
+
+/* team switcher */
+.teams{position:sticky;top:0;z-index:5;background:var(--ink);border-bottom:1px solid var(--line)}
+.teams .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.teams .wrap::-webkit-scrollbar{display:none}
+.teams button{flex:0 0 auto;font:600 .85rem var(--mono);background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:14px 12px 12px;cursor:pointer;white-space:nowrap;min-height:44px}
+.teams button small{display:block;font-weight:400;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.teams button:hover{color:var(--paper)}
+.teams button[aria-selected="true"]{color:var(--paper);border-bottom-color:var(--orange)}
+.teams button[aria-selected="true"] small{color:var(--yellow)}
+
+main{padding-block:28px 56px}
+.teamhead{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:10px 20px;margin-bottom:16px}
+.format{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:var(--orange);color:#120806}
+
+/* slideshow */
+.stage{position:relative;background:#000;border:1px solid var(--line);border-radius:10px;overflow:hidden;aspect-ratio:16/9}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .35s ease}
+.stage img.on{opacity:1}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(11,11,11,.7);color:var(--paper);font:800 1.2rem var(--mono);cursor:pointer;display:grid;place-items:center}
+.nav:hover{background:var(--orange);color:#120806;border-color:var(--orange)}
+.nav.prev{left:10px}.nav.next{right:10px}
+.bar{display:flex;align-items:center;gap:10px;margin-top:10px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.bar .count{font-variant-numeric:tabular-nums;min-width:4.5em}
+.bar button{font:600 .8rem var(--mono);background:var(--panel);color:var(--paper);border:1px solid var(--line);border-radius:6px;padding:7px 12px;cursor:pointer;min-height:36px}
+.bar button:hover{border-color:var(--yellow)}
+.bar .spacer{flex:1}
+.progress{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:8px}
+.progress i{display:block;height:100%;width:0;background:var(--orange);transition:width .3s ease}
+.thumbs{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:thin}
+.thumbs button{flex:0 0 112px;aspect-ratio:16/9;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;background:#000;cursor:pointer;opacity:.55}
+.thumbs button:hover{opacity:.85}
+.thumbs button[aria-current="true"]{border-color:var(--orange);opacity:1}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.stage:fullscreen{border:0;border-radius:0;aspect-ratio:auto}
+
+/* summary + results */
+.detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:28px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
+.box dl{margin:0;display:grid;gap:12px}
+.box dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.box dd{margin:2px 0 0;font-size:.95rem}
+.results{border-color:var(--orange)}
+.results p{color:var(--muted);font-size:.95rem;margin-bottom:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:600;font-size:.9rem;text-decoration:none;padding:11px 16px;border-radius:8px;background:var(--yellow);color:#0b0b0b;min-height:44px}
+.btn:hover{filter:brightness(1.06)}
+.posts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.posts img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;display:block}
+.results video{width:100%;max-height:420px;border-radius:8px;background:#000;display:block;margin-bottom:12px}
+.embed{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:8px;background:#000;margin-bottom:12px}
+.embed.tall{aspect-ratio:9/16;max-width:300px;margin-inline:auto}
+.watch{font-family:var(--mono);font-size:.82rem;display:inline-block;margin-bottom:14px}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:8px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;font-size:.95rem}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-weight:800;color:var(--yellow)}
+.note{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:12px}
+
+/* next steps */
+.nextup{border-top:1px solid var(--line);padding-block:44px 52px}
+.nextup .lead{color:var(--muted);margin-bottom:22px}
+.nextgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.nextcard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px;min-width:0}
+.nextcard .who{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.nextcard ul{margin:8px 0 0;padding-left:1.1em;display:grid;gap:6px;color:var(--muted);font-size:.95rem}
+.nextcard li::marker{color:var(--yellow)}
+.nextcta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:var(--orange);color:#120806;border-radius:10px;padding:18px 20px;margin-top:14px}
+.nextcta p{font-weight:500}
+.nextcta .btn{background:#0b0b0b;color:var(--yellow)}
+@media (max-width:720px){.nextgrid{grid-template-columns:1fr}}
+
+/* who came: infographic */
+.crowd{border-top:1px solid var(--line);padding-block:44px 56px}
+.crowd h2 .script{font-family:var(--script);font-weight:400;color:var(--yellow);font-size:1.5em;letter-spacing:0;margin-left:.15em}
+.crowd .lead{color:var(--muted);margin-bottom:26px}
+.bignums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.bignum{background:var(--panel);padding:18px 16px;min-width:0}
+.bignum b{display:block;font-family:var(--mono);font-weight:800;font-size:clamp(2rem,1.5rem + 2vw,3rem);line-height:1;color:var(--orange);font-variant-numeric:tabular-nums}
+.bignum b small{font-size:.5em;color:var(--paper)}
+.bignum span{display:block;margin-top:8px;font-size:.88rem;color:var(--muted)}
+.ig{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:14px}
+.ig .box h3{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.ig .box h3 small{font-family:var(--mono);font-weight:400;font-size:.72rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.ig .wide{grid-column:1/-1}
+.people{display:flex;flex-wrap:wrap;gap:10px 8px;margin:14px 0 12px}
+.person{width:26px;height:40px;position:relative}
+.person::before{content:"";position:absolute;left:7px;top:0;width:12px;height:12px;border-radius:50%;background:currentColor}
+.person::after{content:"";position:absolute;left:2px;top:15px;width:22px;height:25px;border-radius:11px 11px 4px 4px;background:currentColor}
+.person.yes{color:var(--orange)}
+.person.no{color:#3a3733}
+.person.yes:nth-child(odd)::before{box-shadow:0 -5px 0 -2px var(--red)}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+.key i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.churches{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:9px}
+.churches li{display:grid;grid-template-columns:minmax(0,12em) minmax(0,1fr) 1.6em;gap:10px;align-items:center;font-size:.88rem}
+.churches .bar{height:14px;border-radius:3px;background:var(--line);overflow:hidden;display:flex}
+.churches .bar i{display:block;height:100%;background:var(--orange)}
+.churches .bar i + i{background:#5a4a40}
+.churches b{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+.strip{display:flex;height:42px;border-radius:8px;overflow:hidden;margin:16px 0 12px;font-family:var(--mono);font-weight:800;font-size:.95rem}
+.strip span{display:grid;place-items:center;color:#120806;min-width:0}
+.occ-1{background:var(--yellow)}.occ-2{background:var(--orange)}.occ-3{background:var(--red)}.occ-4{background:var(--muted)}
+.occ-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 14px;font-size:.88rem}
+.occ-key i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+.bubbles{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.bubble{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-radius:50%;width:calc(54px + var(--n) * 9px);aspect-ratio:1;background:rgba(239,78,37,calc(.12 + var(--n) * .05));border:1px solid var(--orange);padding:6px;line-height:1.15}
+.bubble b{font-family:var(--mono);font-weight:800;font-size:calc(.9rem + var(--n) * .07rem);color:var(--paper)}
+.bubble span{font-size:.68rem;color:var(--paper)}
+.bubble em{font-style:normal;font-family:var(--mono);font-size:.62rem;color:var(--yellow)}
+.fun{margin-top:14px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.fun b{color:var(--yellow);font-weight:600}
+
+/* evaluation */
+.subhead{font-family:var(--mono);font-weight:800;font-size:1.25rem;margin:34px 0 14px}
+.takeaways{list-style:none;counter-reset:t;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:12px}
+.takeaways li{counter-increment:t;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;font-size:.92rem;color:var(--muted);min-width:0}
+.takeaways li::before{content:counter(t);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--yellow);color:#0b0b0b;font-family:var(--mono);font-weight:800;margin-bottom:10px}
+.takeaways b{display:block;color:var(--paper);font-family:var(--mono);font-weight:600;margin-bottom:4px}
+.quotes{columns:3 260px;column-gap:14px;margin-top:28px}
+.quote{break-inside:avoid;margin:0 0 14px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:10px;padding:18px 18px 14px;position:relative}
+.quote blockquote{margin:0;font-size:1rem;line-height:1.5}
+.quote blockquote::before{content:"\201C";display:block;font-family:var(--script);font-size:3.4rem;line-height:.6;color:var(--yellow);height:.45em}
+.quote figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.quote.big{background:var(--orange);border-color:var(--orange);color:#120806}
+.quote.big blockquote{font-family:var(--script);font-size:2.6rem;line-height:1}
+.quote.big blockquote::before{color:#0b0b0b}
+.quote.big figcaption{color:#2a0f07}
+.sessions{list-style:none;margin:14px 0 12px;padding:0;display:grid;gap:9px}
+.sessions li{display:grid;grid-template-columns:minmax(0,11em) minmax(0,1fr) 1.4em;gap:10px;align-items:center;font-size:.88rem}
+.sessions b{font-family:var(--mono);text-align:right;color:var(--orange)}
+.sbar{display:flex;height:14px;border-radius:3px;overflow:hidden;gap:2px}
+.sbar .vr{background:var(--orange)}.sbar .r{background:#5a4a40}.sbar .nr{background:#3a3733}.sbar .na{border:1px solid #3a3733;border-radius:2px}
+.logi{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:0}
+.logi li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.logi b{font-family:var(--mono);color:var(--yellow);font-variant-numeric:tabular-nums}
+.better{margin:10px 0 0;padding-left:1.1em;display:grid;gap:6px;color:var(--muted);font-size:.95rem}
+.better li::marker{color:var(--yellow)}
+
+.thanks{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);margin-bottom:22px}
+.photoshow .stage{aspect-ratio:3/2}
+.photoshow + .note{margin-top:12px}
+
+footer{padding-block:28px;border-top:1px solid var(--line)}
+footer p{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+
+@media (max-width:720px){
+  .bignums{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ig{grid-template-columns:1fr}
+  .churches li{grid-template-columns:minmax(0,9em) minmax(0,1fr) 1.6em}
+  .bubble{width:calc(48px + var(--n) * 7px)}
+  .sessions li{grid-template-columns:minmax(0,8.5em) minmax(0,1fr) 1.4em}
+  .quote.big blockquote{font-size:2.2rem}
+  .detail{grid-template-columns:1fr}
+  .posts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nav{width:38px;height:38px;font-size:1rem}
+  .thumbs button{flex-basis:88px}
+  .bar .hide-sm{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="back" href="participants.html">← Participant hub</a>
+    <div class="brandline">INDIGITOUS <span>ILOILO</span></div>
+    <h1 class="mark"><span class="hack">#HACK</span><span class="xmas">Christmas</span><span class="hub">Outputs &amp; evaluation</span></h1>
+    <p class="intro">In 24 hours, four teams built something to help Nonoy, 19, from Jaro, find the true meaning of Christmas. Here's what they made and presented on Saturday, Nov 21, followed by what participants said in the event evaluation. <a href="#feedback">Jump to the evaluation ↓</a></p>
+  </div>
+</header>
+
+<nav class="teams" aria-label="Teams">
+  <div class="wrap" role="tablist" id="team-tabs"></div>
+</nav>
+
+<main>
+  <div class="wrap" id="team" role="tabpanel" aria-live="polite">
+    <div class="teamhead">
+      <div>
+        <p class="eyebrow" id="t-team"></p>
+        <h2 id="t-title"></h2>
+      </div>
+      <span class="format" id="t-format"></span>
+    </div>
+
+    <section aria-label="Pitch deck">
+      <div class="stage" id="stage">
+        <button class="nav prev" type="button" id="prev" aria-label="Previous slide">←</button>
+        <button class="nav next" type="button" id="next" aria-label="Next slide">→</button>
+      </div>
+      <div class="progress"><i id="progress"></i></div>
+      <div class="bar">
+        <span class="count" id="count"></span>
+        <span class="hide-sm">Use ← → keys or swipe</span>
+        <span class="spacer"></span>
+        <button type="button" id="play" aria-pressed="false">▶ Autoplay</button>
+        <button type="button" id="full">⛶ Full screen</button>
+      </div>
+      <div class="thumbs" id="thumbs" aria-label="All slides"></div>
+    </section>
+
+    <div class="detail">
+      <div class="box">
+        <h3>The pitch</h3>
+        <dl id="t-summary"></dl>
+      </div>
+      <div class="box results">
+        <h3>Results</h3>
+        <div id="t-results"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section class="crowd" id="feedback" aria-labelledby="fb-h">
+  <div class="wrap">
+    <p class="eyebrow">In their own words</p>
+    <h2 id="fb-h">What participants said<span class="script">after</span></h2>
+    <p class="lead">Nine participants filled in the event evaluation right after the closing on Saturday. Here's what stayed with them.</p>
+
+    <div class="bignums">
+      <div class="bignum"><b>4.7<small>/5</small></b><span>satisfied with the event</span></div>
+      <div class="bignum"><b>4.8<small>/5</small></b><span>relevant and helpful for their work</span></div>
+      <div class="bignum"><b>9<small>/9</small></b><span>rated the event 4 or 5</span></div>
+      <div class="bignum"><b>7<small>/9</small></b><span>want to volunteer for #HACK or Indigitous</span></div>
+    </div>
+
+    <h3 class="subhead">Key takeaways</h3>
+    <ol class="takeaways">
+      <li><b>Creativity can carry the gospel.</b> Reels, posts, songs and games are real ways to share Jesus, and God-given talents are meant for it.</li>
+      <li><b>Christmas is an open door.</b> People are more willing to listen this season, so it's the time to share.</li>
+      <li><b>Make it approachable.</b> The good news should be easy for someone who has never heard it, like Nonoy, to come close to.</li>
+      <li><b>Better together.</b> Meeting other Christian creatives and building with them was part of the blessing.</li>
+      <li><b>Learning by doing.</b> Mentoring plus a real challenge turned ideas into content in 24 hours.</li>
+    </ol>
+
+    <div class="quotes">
+      <figure class="quote big"><blockquote>Thaaat we can make contents for Jesus!!</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>It's true that during Christmas season, people are very open and willing to listen, so let's grab the opportunity to share Jesus.</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>When we are expected to share the Gospel, it should be suitable for anyone to approach the unreached. It's also a blessing to use our God-given talents to spread the Good News.</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>To share the gospel even through the digital media and to sow seeds of faith as we go along and meet new people.</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>To be connected with other Christians and collaborate in making content to share the gospel in social media.</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>I was trained and mentored in doing evangelism via online platforms, spreading the word of God in a faster way.</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>It was a great experience combining theoretical and practical practices and expertise.</blockquote><figcaption>Participant</figcaption></figure>
+      <figure class="quote"><blockquote>Thank you for holding this kind of event. It has reminded us again to use social media in sharing Jesus.</blockquote><figcaption>Participant</figcaption></figure>
+    </div>
+
+    <div class="ig">
+      <div class="box">
+        <h3>Most relevant sessions <small>of 9 answers</small></h3>
+        <ul class="sessions">
+          <li><span>Persona (Nonoy)</span><span class="sbar"><i class="vr" style="flex:7"></i><i class="r" style="flex:2"></i></span><b>7</b></li>
+          <li><span>Vision casting</span><span class="sbar"><i class="vr" style="flex:6"></i><i class="r" style="flex:3"></i></span><b>6</b></li>
+          <li><span>Mentoring</span><span class="sbar"><i class="vr" style="flex:6"></i><i class="r" style="flex:3"></i></span><b>6</b></li>
+          <li><span>Commissioning</span><span class="sbar"><i class="vr" style="flex:6"></i><i class="r" style="flex:3"></i></span><b>6</b></li>
+          <li><span>#HACK for Christmas group</span><span class="sbar"><i class="vr" style="flex:5"></i><i class="r" style="flex:4"></i></span><b>5</b></li>
+          <li><span>Discord</span><span class="sbar"><i class="vr" style="flex:2"></i><i class="r" style="flex:3"></i><i class="nr" style="flex:3"></i><i class="na" style="flex:1"></i></span><b>2</b></li>
+        </ul>
+        <div class="key"><span><i style="background:var(--orange)"></i>Very relevant (count)</span><span><i style="background:#5a4a40"></i>Relevant</span><span><i style="background:#3a3733"></i>Not relevant</span><span><i style="background:transparent;border:1px solid #3a3733"></i>Didn't attend</span></div>
+      </div>
+      <div class="box">
+        <h3>Logistics <small>average out of 5</small></h3>
+        <ul class="logi">
+          <li><span>Accommodation</span><b>4.9</b></li>
+          <li><span>Venue</span><b>4.9</b></li>
+          <li><span>Overall experience</span><b>4.7</b></li>
+          <li><span>Closing ceremony</span><b>4.7</b></li>
+          <li><span>Welcome kit</span><b>4.6</b></li>
+          <li><span>Communication</span><b>4.6</b></li>
+          <li><span>Activities</span><b>4.6</b></li>
+          <li><span>Program</span><b>4.4</b></li>
+        </ul>
+      </div>
+      <div class="box wide">
+        <h3>What we'll do better next time</h3>
+        <ul class="better">
+          <li>Share more about the challenge ahead of time. One team said the task surprised them, though it pushed them to think deeply about their content.</li>
+          <li>Tighten the program flow, the lowest-rated part of the logistics.</li>
+          <li>Rethink how Discord fits in. Three people found it not relevant.</li>
+          <li>Invite more participants and churches so next year reaches even further.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">From the #HACK Christmas Iloilo event evaluation (9 responses). Quotes are lightly edited for spelling and shared without names.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Slides shared by each team from their Saturday presentations. Evaluation from 9 participant responses. #HACK is an initiative of Indigitous.</p>
+  </div>
+</footer>
+
+<script>
+const range = (n) => Array.from({ length: n }, (_, i) => i + 1);
+
+const TEAMS = [
+  {
+    id: "young-ones", team: "The Young Ones", title: "Project Nonoy: Faith IRL", format: "Social media campaign",
+    dir: "showcase/nonoy", slides: range(13),
+    summary: [
+      ["Nonoy", "A college student who scrolls Instagram at night, hurting from a breakup, loneliness and family problems. He has Christian friends, doesn't follow any religion, but is curious about God."],
+      ["What they made", "A one-month social media campaign: encouraging messages, Bible verses and relatable posts, three times a week on an active church youth page."],
+      ["How it bridges to the good news", "The posts meet him in his struggles, make God's Word feel relevant, and invite him to join church fellowships and activities."],
+      ["What's next", "Bring the same strategy to their church's own social media pages and keep posting faith-based content."],
+    ],
+    results: `<p>Seven finished posts from the campaign, ready to schedule.</p>
+      <div class="posts">${[
+        "you don't have to figure everything out at 19", "your grades are not your identity",
+        "not everyone who leaves your life is a loss", "choose people who help you grow",
+        "you don't always have to pretend you're okay", "your life has a purpose beyond what you can see right now",
+        "to know God personally"].map((t, i) => `<img src="showcase/nonoy/post${i + 1}.webp" alt="Campaign post: ${t}" loading="lazy">`).join("")}</div>`,
+  },
+  {
+    id: "commissioners", team: "The Christ Commissioners", title: "A Christmas song for Nonoy", format: "Music video",
+    dir: "showcase/commissioners", slides: range(8),
+    summary: [
+      ["Team", "Salvilen Joy Balanquit, Salder Jay Baroro, Shawn Locsin"],
+      ["Nonoy", "A 19-year-old music lover who struggles with loneliness, longs for belonging, worries about his future, and is curious to know Jesus personally."],
+      ["What they made", "A Christmas-themed music video with an original song written to speak to Nonoy's struggles."],
+      ["How it bridges to the good news", "Relatable storytelling and original music that move Nonoy from hearing about Jesus to knowing Him, and show that Christmas is God's gift of salvation."],
+      ["What's next", "Monthly themed songs and videos about the struggles of today's generation, plus dance challenges built on the song's catchiest parts."],
+    ],
+    results: `<iframe class="embed" src="https://drive.google.com/file/d/1FU2Wtg-fPzm3-lrTc0T1l9dFvRjSWVU2/preview" title="The Christ Commissioners music video" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+      <a class="watch" href="https://drive.google.com/file/d/1FU2Wtg-fPzm3-lrTc0T1l9dFvRjSWVU2/view" target="_blank" rel="noopener">Open the music video in Google Drive ↗</a>
+      <p>Their follow-up plan for everyone who watches:</p>
+      <ol class="steps">
+        <li>Post a question in the comments so viewers share their thoughts.</li>
+        <li>Send a friendly, no-pressure message to anyone who comments, reacts or shows interest.</li>
+        <li>Invite responsive viewers to an online gathering, then to a local church.</li>
+      </ol>`,
+  },
+  {
+    id: "creatives", team: "Creatives in Motion", title: "Quest for Grace", format: "Mobile game",
+    dir: "showcase/quest", slides: range(14),
+    summary: [
+      ["Nonoy", "A hardworking college freshman chasing top grades and his family's approval, who struggles with perfectionism and sees faith as rules rather than grace."],
+      ["What they made", "A story-driven adventure game in six interactive scenes. Angelo, a stressed student, opens a game and is pulled into Aethelgard, where he learns that God's grace can't be earned."],
+      ["How it bridges to the good news", "Players walk in Angelo's shoes and discover that their worth isn't their achievements: salvation is a gift received by faith (Ephesians 2:8–9)."],
+      ["What's next", "Grow it into a fully playable game and partner with Christian creators, gamers, campus ministries and youth groups to reach more students."],
+    ],
+    results: `<video controls preload="metadata" playsinline src="showcase/quest/concept.mp4" aria-label="Quest for Grace concept video"></video>
+      <p>The concept video, plus a playable prototype built in Canva.</p>
+      <a class="btn" href="https://www.canvaqr.com/RGYJO9o-kI" target="_blank" rel="noopener">Play Quest for Grace ↗</a>`,
+  },
+  {
+    id: "4js", team: "4J's", title: "From doom scrolling to community", format: "Outreach campaign",
+    dir: "showcase/beige", slides: range(11),
+    summary: [
+      ["Nonoy", "Burned out, lonely, doom scrolling, and asking what his life is for."],
+      ["What they made", "A four-step campaign: relate with him, help him see his need, meet that need through a community, and give a clear call to action."],
+      ["How it bridges to the good news", "Nonoy is searching. His need for community becomes the door to discovering more about Jesus."],
+      ["What's next", "A call to action to message the page, which connects Nonoy with a Christian community where someone shares the gospel and starts to disciple him."],
+    ],
+    results: `<iframe class="embed tall" src="https://drive.google.com/file/d/1SBtv7GLLHHR04eMVyPydEKUzA_6XPHjo/preview" title="4J's campaign reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+      <a class="watch" href="https://drive.google.com/file/d/1SBtv7GLLHHR04eMVyPydEKUzA_6XPHjo/view" target="_blank" rel="noopener">Open the reel in Google Drive ↗</a>
+      <p>The campaign journey they designed:</p>
+      <ol class="steps">
+        <li>Relate with him</li>
+        <li>Make him realize his need</li>
+        <li>Meet the need through a community</li>
+        <li>Call to action: message the page and get connected</li>
+      </ol>`,
+  },
+];
+
+/* Slideshow for one team's deck */
+class Slideshow {
+  constructor(els) { this.els = els; this.i = 0; this.timer = null; }
+  load(team) {
+    this.stop();
+    this.team = team; this.i = 0;
+    const { stage, thumbs } = this.els;
+    stage.querySelectorAll("img").forEach(n => n.remove());
+    thumbs.innerHTML = "";
+    const word = team.word || "slide";
+    this.imgs = team.slides.map((n, k) => {
+      const src = team.src ? team.src(n) : `${team.dir}/${n}.webp`;
+      const img = document.createElement("img");
+      img.alt = `${team.title}, ${word} ${k + 1} of ${team.slides.length}`;
+      img.dataset.src = src;
+      stage.insertBefore(img, this.els.prev);
+      const b = document.createElement("button");
+      b.type = "button"; b.setAttribute("aria-label", `Go to ${word} ${k + 1}`);
+      b.innerHTML = `<img src="${team.thumb ? team.thumb(n) : src}" alt="" loading="lazy">`;
+      b.addEventListener("click", () => this.go(k));
+      thumbs.appendChild(b);
+      return img;
+    });
+    this.go(0);
+  }
+  ensure(k) { const img = this.imgs[k]; if (img && !img.src) img.src = img.dataset.src; }
+  go(k) {
+    const n = this.imgs.length;
+    this.i = (k + n) % n;
+    this.imgs.forEach((img, j) => img.classList.toggle("on", j === this.i));
+    [this.i, this.i + 1, this.i - 1].forEach(j => this.ensure((j + n) % n));
+    const tb = [...this.els.thumbs.children];
+    tb.forEach((b, j) => b.setAttribute("aria-current", String(j === this.i)));
+    tb[this.i].scrollIntoView({ block: "nearest", inline: "nearest" });
+    this.els.count.textContent = `${this.i + 1} / ${n}`;
+    this.els.progress.style.width = `${((this.i + 1) / n) * 100}%`;
+  }
+  step(d) { this.go(this.i + d); }
+  play() {
+    this.timer = setInterval(() => this.step(1), 5000);
+    this.els.play.setAttribute("aria-pressed", "true"); this.els.play.textContent = "❚❚ Pause";
+  }
+  stop() {
+    clearInterval(this.timer); this.timer = null;
+    this.els.play.setAttribute("aria-pressed", "false"); this.els.play.textContent = "▶ Autoplay";
+  }
+  wire() {
+    const { stage, prev, next, play, full } = this.els;
+    prev.addEventListener("click", () => this.step(-1));
+    next.addEventListener("click", () => this.step(1));
+    play.addEventListener("click", () => (this.timer ? this.stop() : this.play()));
+    full.addEventListener("click", () => {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (stage.requestFullscreen) stage.requestFullscreen();
+    });
+    document.addEventListener("keydown", e => {
+      if (e.target.closest("input, textarea, video")) return;
+      const r = stage.getBoundingClientRect();
+      if (r.bottom < innerHeight * 0.3 || r.top > innerHeight * 0.7) return;
+      if (e.key === "ArrowRight") this.step(1);
+      if (e.key === "ArrowLeft") this.step(-1);
+    });
+    let x0 = null;
+    stage.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener("touchend", e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) this.step(dx < 0 ? 1 : -1);
+    });
+  }
+}
+
+/* Team switcher: picks a team, fills in its deck, pitch and results */
+class Showcase {
+  constructor(teams, show) { this.teams = teams; this.show = show; this.tabs = document.getElementById("team-tabs"); }
+  render(team) {
+    document.getElementById("t-team").textContent = team.team;
+    document.getElementById("t-title").textContent = team.title;
+    document.getElementById("t-format").textContent = team.format;
+    document.getElementById("t-summary").innerHTML = team.summary.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
+    document.getElementById("t-results").innerHTML = team.results;
+    [...this.tabs.children].forEach(b => b.setAttribute("aria-selected", String(b.dataset.id === team.id)));
+    this.show.load(team);
+  }
+  select(id, push) {
+    const team = this.teams.find(t => t.id === id) || this.teams[0];
+    this.render(team);
+    if (push) try { history.replaceState(null, "", "#" + team.id); } catch (e) {}
+  }
+  wire() {
+    this.teams.forEach(t => {
+      const b = document.createElement("button");
+      b.type = "button"; b.setAttribute("role", "tab"); b.dataset.id = t.id;
+      b.innerHTML = `${t.title}<small>${t.team}</small>`;
+      b.addEventListener("click", () => { this.select(t.id, true); window.scrollTo({ top: document.querySelector(".teams").offsetTop }); });
+      this.tabs.appendChild(b);
+    });
+    window.addEventListener("hashchange", () => this.select(location.hash.slice(1)));
+    this.select(location.hash.slice(1));
+  }
+}
+
+const show = new Slideshow({
+  stage: document.getElementById("stage"), thumbs: document.getElementById("thumbs"),
+  count: document.getElementById("count"), progress: document.getElementById("progress"),
+  prev: document.getElementById("prev"), next: document.getElementById("next"),
+  play: document.getElementById("play"), full: document.getElementById("full"),
+});
+show.wire();
+new Showcase(TEAMS, show).wire();
+</script>
+</body>
+</html>
